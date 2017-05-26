@@ -16,4 +16,14 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 
+	app.get('/test', (req, res) => {
+		res.send('tested route ;)');
+	});
+
+	app.get('/tested-json', (req, res) => {
+		res.json({
+			a: 'some',
+			b: 'value',
+		})
+	})
 };

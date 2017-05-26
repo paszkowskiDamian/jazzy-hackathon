@@ -74,3 +74,5 @@ typings/
 .env
 
 /.idea
+
+backend/public/styles/site.css

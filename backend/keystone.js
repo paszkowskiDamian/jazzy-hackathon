@@ -14,7 +14,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
-
+	'port': '3005',
 	'auto update': true,
 	'session': true,
 	'auth': true,
