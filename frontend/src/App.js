@@ -11,12 +11,22 @@ import { Navigation } from './views/Navigation/Navigation';
 
 
 class App extends Component {
+  state = {
+    loggedInUser: {}
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3005/users/4')
+    .then(res => res.json())
+    .then(loggedInUser => this.setState({loggedInUser}));
+  }
+
   render() {
+    const { loggedInUser } = this.state;
     return (
       <Router>
         <div className="App">
-          <Navigation />
-
+          <Navigation loggedInUser={loggedInUser} />
 
           <Route exact path="/" component={Organizations} />
           <Route path="/events" component={Events} />

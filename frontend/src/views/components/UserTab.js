@@ -4,13 +4,14 @@ import { Avatar } from './Avatar';
 
 export class UserTab extends Component {
     render() {
+        const { name, avatar } = this.props;
         return (
             <div className="user-tab">
                 <div className="user-details">
-                    <span>John Smith</span>
+                    <span>{name}</span>
                     <span>Logout</span>
                 </div>
-                <Avatar />
+                <Avatar avatar={avatar} />
             </div>
         );
     }

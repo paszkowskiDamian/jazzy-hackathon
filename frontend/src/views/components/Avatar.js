@@ -1,7 +1,9 @@
 import React from 'react';
 
-export function Avatar() {
+export function Avatar({ avatar }) {
     return (
-        <div className="avatar"></div>
+        <div className="avatar">
+            <img src={avatar} />
+        </div>
     );
 }

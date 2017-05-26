@@ -6,6 +6,8 @@
   align-items: center;
   color: white;
   height: 60px; }
+  .navigation a {
+    color: white; }
   .navigation .logo {
     flex: 1; }
   .navigation .navigation-tabs-wrapper {
@@ -47,11 +49,11 @@
   .navigation .user-tab {
     flex: 3;
     display: flex;
-    text-align: left;
     justify-content: space-around; }
     .navigation .user-tab .user-details {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      text-align: right; }
       .navigation .user-tab .user-details span {
         margin-left: 80px;
         cursor: pointer; }
@@ -59,4 +61,11 @@
       width: 40px;
       border-radius: 50%;
       height: 40px;
-      border: 1px solid black; }
+      overflow: hidden;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 20px; }
+      .navigation .user-tab .avatar img {
+        height: 100%; }
