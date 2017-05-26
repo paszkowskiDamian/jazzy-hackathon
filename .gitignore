@@ -73,3 +73,6 @@ typings/
 # dotenv environment variables file
 .env
 
+/.idea
+
+backend/public/styles/site.css
