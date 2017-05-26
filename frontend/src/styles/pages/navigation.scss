@@ -57,7 +57,7 @@
             border: 1px solid white;
             padding: 5px 3px 6px 0px;
             border-radius: 0px 15px 15px 0px;
-
+            cursor: pointer;
         }
     }
 
@@ -65,10 +65,23 @@
         flex: 3;
         display: flex;
         text-align: left;
-        flex-direction: column;
+        justify-content: space-around;
 
-        span {
-            margin-left: 80px;
+        .user-details {
+            display: flex;
+            flex-direction: column;
+
+            span {
+                margin-left: 80px;
+                cursor: pointer;
+            }
+        }
+
+        .avatar {
+            width: 40px;
+            border-radius: 50%;
+            height: 40px;
+            border: 1px solid black;
         }
     }
 }

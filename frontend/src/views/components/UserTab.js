@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
+import { Avatar } from './Avatar';
+
 export class UserTab extends Component {
     render() {
         return (
             <div className="user-tab">
-                <span>John Smith</span>
-                <span>Logout</span>
+                <div className="user-details">
+                    <span>John Smith</span>
+                    <span>Logout</span>
+                </div>
+                <Avatar />
             </div>
         );
     }
