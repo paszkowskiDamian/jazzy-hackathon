@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
+  Switch
 } from 'react-router-dom'
 
+import { RouteWithProps } from './RouteWithProps';
 import { Organizations } from './pages/Organizations/Organizations';
 import { Projects } from './pages/Projects/Projects';
 import { Events } from './pages/Events/Events';
@@ -17,8 +18,8 @@ class App extends Component {
 
   componentDidMount() {
     fetch('http://localhost:3005/users/4')
-    .then(res => res.json())
-    .then(loggedInUser => this.setState({loggedInUser}));
+      .then(res => res.json())
+      .then(loggedInUser => this.setState({ loggedInUser }));
   }
 
   render() {
@@ -28,9 +29,11 @@ class App extends Component {
         <div className="App">
           <Navigation loggedInUser={loggedInUser} />
 
-          <Route exact path="/" component={Organizations} />
-          <Route path="/events" component={Events} />
-          <Route path="/projects" component={Projects} />
+          <Switch>
+            <RouteWithProps exact path="/" component={Organizations} props={{...this.state}}/>
+            <RouteWithProps path="/events" component={Events} props={{...this.state}} />
+            <RouteWithProps path="/projects" component={Projects} props={{...this.state}} />
+          </Switch>
         </div>
       </Router>
     );

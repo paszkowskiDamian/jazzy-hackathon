@@ -10,7 +10,15 @@
   .navigation a {
     color: white; }
   .navigation .logo {
-    flex: 1; }
+    flex: 1;
+    height: 100%; }
+    .navigation .logo a {
+      color: white;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   .navigation .navigation-tabs-wrapper {
     flex: 7;
     display: flex;

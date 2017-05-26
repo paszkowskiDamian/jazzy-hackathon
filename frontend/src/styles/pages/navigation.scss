@@ -4,7 +4,7 @@
     a {
         color: white;
     }
-    
+
     display: flex;
     text-align: center;
     background: $primary-color-dark;
@@ -15,6 +15,16 @@
 
     .logo {
         flex: 1;
+        height: 100%;
+
+        a {
+            color: white;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     .navigation-tabs-wrapper {
