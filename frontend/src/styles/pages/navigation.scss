@@ -1,0 +1,74 @@
+@import '../variables.scss';
+
+.navigation {
+    display: flex;
+    text-align: center;
+    background: $primary-color-dark;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: $nav-height;
+
+    .logo {
+        flex: 1;
+    }
+
+    .navigation-tabs-wrapper {
+        flex: 7;
+        display: flex;
+        height: 100%;
+
+        .item {
+            color: white;
+            flex-basis: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background: $primary-color;
+            }
+        }
+    }
+
+    .search-input {
+        flex: 3;
+        color: $primary-color-text;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            font-size: 16px;
+            flex: 7;
+            padding: 5px 15px;
+            background: $pageBackground;
+            border: none;
+            border-radius: 15px 0px 0px 15px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        i {
+            flex: 1;
+            color: white;
+            border: 1px solid white;
+            padding: 5px 3px 6px 0px;
+            border-radius: 0px 15px 15px 0px;
+
+        }
+    }
+
+    .user-tab {
+        flex: 3;
+        display: flex;
+        text-align: left;
+        flex-direction: column;
+
+        span {
+            margin-left: 80px;
+        }
+    }
+}
