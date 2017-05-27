@@ -52,6 +52,7 @@
 
     .search-input {
         flex: 3;
+	  	position: relative;
         color: $primary-color-text;
         display: flex;
         justify-content: space-between;
@@ -79,6 +80,42 @@
             background: $logo-violet;
             cursor: pointer;
         }
+
+	  .results-container {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		transform: translateY(100%);
+		right: 0;
+		text-align: initial;
+		background-color: white;
+		border: 1px solid black;
+
+		.loader {
+		  display: flex;
+		  justify-content: center;
+
+		  img {
+			width: 100px;
+			height: 100px;
+		  }
+		}
+
+		.results {
+		  > div {
+			cursor: pointer;
+			padding: 0.5em 0;
+
+			span {
+			  margin-left: 0.5em;
+			}
+
+			&:hover {
+			  background-color: $primary-color-dark;
+			}
+		  }
+		}
+	  }
     }
 
     .user-tab {
