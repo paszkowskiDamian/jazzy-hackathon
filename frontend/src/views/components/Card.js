@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export class Card extends Component {
     render() {
         return (
             <div className="card-wrapper">
-                <div className="card-img">
-                    <img src={'https://images.unsplash.com/photo-1495511623436-ba44aaee07cf?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg='} alt="some-organization" />
-                    <h3>HighFlyers</h3>
-                </div>
+							<a href={this.props.link}>
+								<div className="card-img">
+									{this.props.image ?
+										<img src={this.props.image} className="image" alt="some-organization" /> :
+										<img src={'https://source.unsplash.com/random'} alt="some-organization" />}
+									<h3>{this.props.title}</h3>
+								</div>
+							</a>
                 <div className="card-details">
                     <div className="name">
                         <span>Creative Minds</span>

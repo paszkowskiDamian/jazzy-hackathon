@@ -95,9 +95,7 @@ exports = module.exports = function (app) {
 					message: 'Invalid credentials',
 				});
 			} else {
-				res.json({
-					id: result._id
-				});
+				res.json(result);
 			}
 		});
 	});

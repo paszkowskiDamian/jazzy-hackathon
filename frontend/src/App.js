@@ -10,39 +10,44 @@ import { RouteWithProps } from './RouteWithProps';
 
 class App extends Component {
   state = {
+    loggedInUser: {},
     isUserLoggedIn: false,
     userId: '',
   }
 
-  componentWillUnmount() {
-    console.log('TEST')
-  }
-
   componentWillMount() {
-    // const userId = localStorage.getItem("userId");
-    // if (userId !== '') {
-    //   this.setState({isUserLoggedIn: true})
-    // } else {
-    //   this.setState({isUserLoggedIn: false})
-    // }
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user !== null) {
+      this.setState({ isUserLoggedIn: true, loggedInUser: user });
+    } else {
+      this.setState({ isUserLoggedIn: false, loggedInUser: {} });
+    }
   }
 
-  setUserAuthentication = (isUserLoggedIn, ...rest) => {
-    // if (res.isUserLoggedIn) {
-    //   localStorage.setItem('userId', res.id);
-    // }
-    this.setState({isUserLoggedIn: isUserLoggedIn, ...rest})
+  addUser = (isUserLoggedIn, user) => {
+    this.setState({ isUserLoggedIn, loggedInUser: user });
+    if (isUserLoggedIn) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
   }
-  
+
+  logOut = () => {
+    this.setState({
+      loggedInUser: {},
+      isUserLoggedIn: false,
+    });
+    localStorage.clear();
+  }
+
   render() {
-    const { isUserLoggedIn, userId } = this.state;
+    const { isUserLoggedIn, userId, loggedInUser } = this.state;
     return (
       <Router>
         <div className="App">
-          <RouteWithProps path="/" component={Login} props={{ ...this.state, setUserAuthentication: this.setUserAuthentication }} />
+          <RouteWithProps path="/" component={Login} props={{ ...this.state, addUser: this.addUser }} />
           {
             isUserLoggedIn &&
-            <Home userId={userId} isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
+            <Home logOut={this.logOut} loggedInUser={loggedInUser} userId={userId} isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
           }
         </div>
       </Router>

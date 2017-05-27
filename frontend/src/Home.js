@@ -14,33 +14,17 @@ import { Events } from './pages/Events/Events';
 
 
 export class Home extends Component {
-  state = {
-    loggedInUser: {},
-  }
-
-  componentDidMount() {
-    const { userId, setUserAuthentication } = this.props;
-    httpService.GET(`/users/${userId}`)
-      .then(res => {
-        const { isUserLoggedIn, ...rest } = res;
-        setUserAuthentication(isUserLoggedIn);
-        if (isUserLoggedIn) {
-          console.log(res)
-          this.setState({...rest})
-        }
-      });
-  }
-
   render() {
-    const { isUserLoggedIn } = this.props;
+    const { isUserLoggedIn, loggedInUser, logOut } = this.props;
+    const propsToPass = {loggedInUser, logOut}
     return (
       isUserLoggedIn ?
       <Switch>
-        <RouteWithProps exact path="/panel" component={Panel} props={{ ...this.state }} />
-        <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />
-        <RouteWithProps exact path="/organizations/:id" component={Organization} props={{ ...this.state }} />
-        <RouteWithProps exact path="/events" component={Events} props={{ ...this.state }} />
-        <RouteWithProps exact path="/projects" component={Projects} props={{ ...this.state }} />
+        <RouteWithProps path="/panel" component={Panel} props={{...propsToPass}} />
+        <RouteWithProps path="/organizations" component={Organizations} props={{...propsToPass}} />
+        <RouteWithProps path="/organizations/:id" component={Organization} props={{...propsToPass}} />
+        <RouteWithProps path="/events" component={Events} props={{...propsToPass}} />
+        <RouteWithProps path="/projects" component={Projects} props={{...propsToPass}} />
       </Switch> :
       <Redirect to="/"/>
     );

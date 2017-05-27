@@ -25,9 +25,12 @@ export class Login extends Component {
 
     logIn = (e) => {
         const { email, password } = this.state;
-        const { setUserAuthentication } = this.props;
+        const { addUser } = this.props;
         httpService.POST('/login', JSON.stringify({ email, password }))
-            .then((res) => setUserAuthentication(res));
+            .then((res) => {
+                const { isUserLoggedIn, ...rest } = res;
+                addUser(isUserLoggedIn, rest);
+            });
     }
 
     render() {
