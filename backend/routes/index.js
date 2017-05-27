@@ -3,6 +3,7 @@ var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 var PublicUser = keystone.list('PublicUser');
 var Organization = keystone.list('Organization');
+var Project = keystone.list('Project');
 var mongoose = keystone.mongoose;
 
 // Common Middleware
@@ -199,28 +200,14 @@ exports = module.exports = function (app) {
 	app.get('/organizations/:id', ({params}, res, next) => {
 		const { id } = params;
 
-		res.json({
-			name: 'Klub jedzenia',
-			id,
-			projects: [singleProj, singleProj],
-			description: '<h1>Klub jedzenia wita!</h1><br/><span>Jestesmy klubem jedzenia xD</span>>',
-			shortDescription: 'Jestesmy klubem w ktorym sie je ;)',
-			logo: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg',
-			location: {
-				long: 50.2899672,
-				lat: 18.6764128,
-			},
-			events: [],
-			users: [singleUser, singleUser, singleUser],
-			admins: [singleUser, singleUser],
-			socialMedia: {
-				fb: 'https://expressjs.com/en/starter/installing.html',
-				github: 'https://expressjs.com/en/starter/installing.html',
-				linkedin: 'https://expressjs.com/en/starter/installing.html',
-			},
-			periodicMeetup: null,
-			tags: ['informatyka', 'jedzenie', 'dupy'],
-
+		Organization.model.findOne({
+			_id: id,
+		}).populate('admins').exec((err, result) => {
+			if(err || !result){
+				res.status(400).send(err)
+			} else {
+				res.json(result);
+			}
 		});
 	});
 
