@@ -8,6 +8,10 @@ var Types = keystone.Field.Types;
 var PublicUser = new keystone.List('PublicUser');
 
 PublicUser.add({
+	email: {
+		type: String,
+		unique: true,
+	},
 	name: String,
 	avatar: String,
 	//projects: [0, 1, 2, 5],
@@ -24,6 +28,14 @@ PublicUser.add({
 
 PublicUser.schema.add({
 	password: String
+});
+
+PublicUser.schema.set('toJSON', {
+	transform: function (doc, ret, options) {
+		ret.id = ret._id;
+		delete ret._id;
+		delete ret.__v;
+	}
 });
 
 /**

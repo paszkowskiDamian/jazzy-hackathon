@@ -65,28 +65,52 @@ exports = module.exports = function (app) {
 	app.get('/users/:id', ({params, body}, res, next) => {
 		const { id } = params;
 		PublicUser.model.findOne({_id: mongoose.Types.ObjectId( id )}).exec((err, result) => {
-			if(err) {
-				res.send(500).end(err);
+			if(err || !result) {
+				res.status(400).json({
+					message: `User not exist`
+				});
 			} else {
 				res.json(result);
 			}
-		})
+		});
 	});
 
 	app.post('/login', ({body}, res, next) => {
 		const {email, password} = body;
 
-		//checkIfUserExists()
-
-		res.json({
-			id: 45,
-		})
+		PublicUser.model.findOne({email, password}).exec((err, result) => {
+			if(err || !result) {
+				res.status(401).json({
+					message: 'Invalid credentials',
+				});
+			} else {
+				res.json({
+					id: result._id
+				});
+			}
+		});
 	});
 
 	app.post('/register', ({body}, res, next) => {
 		const {email, password, name, about, skills, interests, avatar} = body;
 
-		res.status(200).send();
+		var user = new PublicUser.model({
+			email,
+			password,
+			name,
+			about,
+			skills,
+			interests,
+			avatar
+		});
+
+		user.save((err, result) => {
+			if(err){
+				res.status(400).send(err)
+			} else {
+				res.status(200).send(result);
+			}
+		});
 	});
 
 	// app.get('/users/:id', ({params}, res, next) => {

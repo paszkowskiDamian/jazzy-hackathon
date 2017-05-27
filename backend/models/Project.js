@@ -19,5 +19,14 @@ Project.add({
 	skillsNeeded: { type: Types.TextArray },
 	likes: Number,
 });
+
+Project.schema.set('toJSON', {
+	transform: function (doc, ret, options) {
+		ret.id = ret._id;
+		delete ret._id;
+		delete ret.__v;
+	}
+});
+
 //User.defaultColumns = 'name, email, isAdmin';
 Project.register();
