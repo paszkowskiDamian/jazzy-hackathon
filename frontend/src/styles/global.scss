@@ -9,6 +9,7 @@
 @import 'pages/login.scss';
 @import 'pages/registration-modal.scss';
 @import 'pages/organization.scss';
+@import 'pages/logo.scss';
 
 
 * {
@@ -49,9 +50,9 @@ body {
 }
 
 span.react-tagsinput-tag {
-    background: $primary-color-light;
-    color: $primary-color-text;
-    border: 1px solid $primary-color-dark;
+    background: $violet-faded;
+    color: white;
+    border: none;
     height: 13px;
     margin-bottom: 0px;
     display: flex;

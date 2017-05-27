@@ -1,41 +1,48 @@
+.visible {
+  z-index: 100; }
+
 .modal {
-  position: absolute;
-  width: 100%; }
+  position: fixed;
+  width: 100%;
+  height: 100%; }
   .modal .bg-modal {
     position: absolute;
-    z-index: 100;
     width: 100%;
     height: 100vh;
     opacity: 0.8;
-    background-color: black;
+    background: black;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
     bottom: 0; }
-  .modal .hide {
+  .modal .modal-card {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.8;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    bottom: 0;
+    margin-bottom: 15vh; }
+  .modal .fade {
     opacity: 0;
     bottom: 150%;
     transition: 0.3s ease-in-out; }
-  .modal .modal-card-container {
-    position: absolute;
-    z-index: 100;
-    width: 100%;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-    bottom: 0; }
   .modal .swipe {
     bottom: 150%;
     transition: 0.3s ease-in-out; }
+  .modal .modal-card-container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center; }
   .modal .modal-card {
-    position: absolute;
-    top: 100%;
     opacity: 1;
     background: white;
     z-index: 200;
-    width: 70%;
-    height: 70%; }
+    width: 80%;
+    height: 70vh; }

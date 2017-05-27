@@ -6,11 +6,11 @@ export class RegistrationModal extends Component {
     render() {
         const { isHidden, toggleModal } = this.props;
         return (
-            <div className="modal">
-                <div className={cn('modal-card-container', { swipe: isHidden })} > 
-                    <div className={'modal-card'}>CARD</div>
+            <div className={cn('modal', {visible: !isHidden})} >
+                <div className={cn('modal-card-container')} > 
+                    <div className={cn('modal-card', { swipe: isHidden })}>CARD</div>
                 </div>
-                <div className={cn('bg-modal', { hide: isHidden })} onClick={() => toggleModal()} ></div>
+                <div className={cn('bg-modal', { fade: isHidden })} onClick={() => toggleModal()} ></div>
             </div>
         );
     }

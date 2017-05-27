@@ -14,7 +14,6 @@ export class Login extends Component {
             <div className="login-page">
                 <RegistrationModal toggleModal={this.toggleModal} isHidden={this.state.isHidden} />
                 <div className="logo">LOGO</div>
-                {/*<NavLink to="/organizations" activeClassName="active" exact className="item">Organizacje</NavLink>*/}
                 <div className="text-container" >
                     <div className="text-card">
                         <h1>Cześć!</h1>
