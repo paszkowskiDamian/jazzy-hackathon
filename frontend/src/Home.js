@@ -8,6 +8,7 @@ import { RouteWithProps } from './RouteWithProps';
 import { Organizations } from './pages/Organizations/Organizations';
 import { Organization } from './pages/Organizations/Organization';
 import { Projects } from './pages/Projects/Projects';
+import { Panel } from './pages/Panel/Panel';
 import { Events } from './pages/Events/Events';
 
 
@@ -24,6 +25,7 @@ export class Home extends Component {
   render() {
     return (
       <Switch>
+        <RouteWithProps exact path="/panel" component={Panel} props={{ ...this.state }} />
         <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />
         <RouteWithProps exact path="/organizations/:id" component={Organization} props={{ ...this.state }} />
         <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />

@@ -31,7 +31,7 @@ export class Map extends Component {
 
     render() {
         return (
-            <div style={{ width: '100%', height: '60vh' }}>
+            <div style={{ width: '100%', height: '60vh', boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}>
                 <GoogleMap
                     apiKey="AIzaSyBLS_NpKl0zF9eUlWwPxsGEb6hReanSNLo" // set if you need stats etc ...
                     center={this.state.center}
