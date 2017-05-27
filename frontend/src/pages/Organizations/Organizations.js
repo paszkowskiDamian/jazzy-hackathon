@@ -6,6 +6,7 @@ import { Card } from '../../views/components/Card';
 import { SearchBar } from '../../views/components/SearchBar';
 import { organizations } from '../../data/organizations';
 import { httpService } from '../../services/Http';
+import * as geocoder from 'geocoder';
 
 
 export class Organizations extends Component {
@@ -28,12 +29,13 @@ export class Organizations extends Component {
                     <div className="organization-cards">
                         {this.state.organizations.map(organization => <Card
                             key={organization.name}
-                            loggedInUser={loggedInUser} 
+                            loggedInUser={loggedInUser}
                             title={organization.name}
                             id={organization.id}
                             description={organization.description}
                             image={organization.logo}
-                            userCount={organization.users.length} />)}
+                            userCount={organization.users.length}
+                            location={organization.location.geo} />)}
                     </div>
                 </div>
             </div>

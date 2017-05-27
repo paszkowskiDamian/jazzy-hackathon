@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import * as geocoder from 'geocoder';
 
 export class Card extends Component {
+    state = {
+        adress: ""
+    }
+
+    componentWillMount() {
+        // const { location } = this.props;
+        // if (location && location.length === 2) {
+        //     geocoder.reverseGeocode(location[1], location[0], function (err, data) {
+        //         if (!err && data.length){
+        //             this.setState({ adress: data[0].formatted_address })
+        //             console.log(this.setState)
+        //         }
+        //     });
+        // }
+    }
+
     render() {
-        console.log(this.props);
         return (
             <div className="card-wrapper">
                 <div className="card-img">
@@ -17,7 +33,7 @@ export class Card extends Component {
                         <span>Creative Minds</span>
                     </div>
                     <div className="location">
-                        <span>Gliwice</span>
+                        <span>{this.state.adress ? this.state.adress : "Gliwice"}</span>
                     </div>
                     <div className="description">
                         <span>extra curricular opportunities to learn </span>

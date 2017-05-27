@@ -3,7 +3,7 @@ export class Http {
         this.address = address;
     }
 
-    makeRequest(method, path, options = null) {
+    makeRequest(method, path, options = null, extraHeaders) {
         let isUserLoggedIn = true;
 
         const config = {
@@ -11,6 +11,7 @@ export class Http {
             body: options,
             headers: {
                 'Content-Type': 'application/json',
+                ...extraHeaders,
             },
         }
 
@@ -28,12 +29,12 @@ export class Http {
             }))
     }
 
-    GET(path) {
-        return this.makeRequest('GET', path);
+    GET(path,extraHeaders) {
+        return this.makeRequest('GET', path, null, extraHeaders);
     }
 
-    POST(path, options) {
-        return this.makeRequest('POST', path, options);
+    POST(path, options,extraHeaders) {
+        return this.makeRequest('POST', path, options,extraHeaders);
     }
 }
 
