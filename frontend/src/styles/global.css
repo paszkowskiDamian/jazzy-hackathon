@@ -194,7 +194,8 @@
       width: 100%;
       position: relative;
       top: 3px;
-      margin-left: 0; }
+      margin-left: 0;
+      border-bottom: none; }
   .organizations .search-bar .filter-tags {
     display: flex;
     padding-right: 10px; }
