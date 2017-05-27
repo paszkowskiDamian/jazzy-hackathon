@@ -28,8 +28,9 @@
       .organization-cards .card-wrapper .card-img h3 {
         position: absolute;
         bottom: 5px;
+        left: 10px;
         color: white;
-        text-shadow: 0px 1px 12px 0px; }
+        text-shadow: 0px 0px 10px black; }
     .organization-cards .card-wrapper .card-details {
       font-size: 14px;
       margin-left: 10px;
@@ -45,6 +46,8 @@
         bottom: 10px;
         display: flex;
         justify-content: space-around; }
+        .organization-cards .card-wrapper .card-details .links strong {
+          cursor: pointer; }
     @media screen and (min-width: 1600px) {
       .organization-cards .card-wrapper {
         flex-basis: 15%;

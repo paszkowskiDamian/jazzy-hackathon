@@ -36,8 +36,9 @@
             h3 {
                 position: absolute;
                 bottom: 5px;
+                left: 10px;
                 color: white;
-                text-shadow: 0px 1px 12px 0px;
+                text-shadow: 0px 0px 10px black;
             }
         }
 
@@ -59,6 +60,10 @@
                 bottom: 10px;
                 display: flex;
                 justify-content: space-around;
+
+                strong {
+                    cursor: pointer;
+                }
             }
         }
 
