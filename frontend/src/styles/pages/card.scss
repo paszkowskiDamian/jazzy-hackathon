@@ -1,3 +1,80 @@
-.card-wrapper {
-    border: 1px solid black;
+@import '../variables.scss';
+
+.organization-cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px auto 0 auto;
+    width: 90%;
+
+    @media screen and (max-width: $media-mobile) {
+        display: block;
+        width: 60%;
+    }
+
+    .card-wrapper {
+        border-radius: 2px;
+        height: 360px;
+        flex-basis: 21%;
+        margin-bottom: 40px;
+        margin-left: 3%;
+        overflow: hidden;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+
+        .card-img {
+            overflow: hidden;
+            height: 45%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            h3 {
+                position: absolute;
+                bottom: 5px;
+                color: white;
+                text-shadow: 0px 1px 12px 0px;
+            }
+        }
+
+        .card-details {
+            font-size: 14px;
+            margin-left: 10px;
+            margin-top: 20px;
+            height: 50%;
+            position: relative;
+
+            .name {
+                color: $secondary-text-color;
+                margin-bottom: 10px;
+            }
+
+            .links {
+                width: 100%;
+                position: absolute;
+                bottom: 10px;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+
+
+        @media screen and (min-width: $media-large) {
+            flex-basis: 15%;
+            margin-left: 4%;
+        }
+
+        @media screen and (max-width: $media-medium) {
+            flex-basis: 29%;
+        }
+
+        @media screen and (min-width: $media-small) and (max-width: $media-medium) {
+            flex-basis: 25%;
+            margin-left: 6%;
+        }
+    }
 }

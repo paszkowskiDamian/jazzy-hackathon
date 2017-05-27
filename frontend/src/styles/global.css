@@ -79,6 +79,69 @@
       .navigation .user-tab .avatar img {
         height: 100%; }
 
+.organization-cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px auto 0 auto;
+  width: 90%; }
+  @media screen and (max-width: 480px) {
+    .organization-cards {
+      display: block;
+      width: 60%; } }
+  .organization-cards .card-wrapper {
+    border-radius: 2px;
+    height: 360px;
+    flex-basis: 21%;
+    margin-bottom: 40px;
+    margin-left: 3%;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: all .2s ease-in-out; }
+    .organization-cards .card-wrapper:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+    .organization-cards .card-wrapper .card-img {
+      overflow: hidden;
+      height: 45%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative; }
+      .organization-cards .card-wrapper .card-img h3 {
+        position: absolute;
+        bottom: 5px;
+        color: white;
+        text-shadow: 0px 1px 12px 0px; }
+    .organization-cards .card-wrapper .card-details {
+      font-size: 14px;
+      margin-left: 10px;
+      margin-top: 20px;
+      height: 50%;
+      position: relative; }
+      .organization-cards .card-wrapper .card-details .name {
+        color: #757575;
+        margin-bottom: 10px; }
+      .organization-cards .card-wrapper .card-details .links {
+        width: 100%;
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        justify-content: space-around; }
+    @media screen and (min-width: 1600px) {
+      .organization-cards .card-wrapper {
+        flex-basis: 15%;
+        margin-left: 4%; } }
+    @media screen and (max-width: 1200px) {
+      .organization-cards .card-wrapper {
+        flex-basis: 29%; } }
+    @media screen and (min-width: 768px) and (max-width: 1200px) {
+      .organization-cards .card-wrapper {
+        flex-basis: 25%;
+        margin-left: 6%; } }
+
+.organizations-wrapper {
+  display: flex;
+  justify-content: center; }
+
 * {
   margin: 0;
   padding: 0;

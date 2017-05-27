@@ -20,6 +20,10 @@ class App extends Component {
     fetch('http://localhost:3005/users/4')
       .then(res => res.json())
       .then(loggedInUser => this.setState({ loggedInUser }));
+
+    fetch('http://localhost:3005/users/4')
+      .then(res => res.json())
+      .then(loggedInUser => this.setState({ loggedInUser }));
   }
 
   render() {
@@ -30,9 +34,9 @@ class App extends Component {
           <Navigation loggedInUser={loggedInUser} />
 
           <Switch>
-            <RouteWithProps exact path="/" component={Organizations} props={{...this.state}}/>
-            <RouteWithProps path="/events" component={Events} props={{...this.state}} />
-            <RouteWithProps path="/projects" component={Projects} props={{...this.state}} />
+            <RouteWithProps exact path="/" component={Organizations} props={{ ...this.state }} />
+            <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />
+            <RouteWithProps path="/projects" component={Projects} props={{ ...this.state }} />
           </Switch>
         </div>
       </Router>
