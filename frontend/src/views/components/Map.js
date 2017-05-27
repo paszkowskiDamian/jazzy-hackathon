@@ -18,7 +18,6 @@ export class Map extends Component {
     state = { center: [] }
 
     componentWillMount() {
-        console.log("jje")
         if (navigator) {
             navigator.geolocation.getCurrentPosition((position => {
                 this.setState({ center: [position.coords.latitude, position.coords.longitude] })
@@ -38,7 +37,6 @@ export class Map extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div style={{ width: '100%', height: '60vh' }}>
                 <GoogleMap
