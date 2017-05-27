@@ -133,6 +133,8 @@
       align-items: center;
       justify-content: center;
       position: relative; }
+      .organization-cards .card-wrapper .card-img img {
+        width: 100%; }
       .organization-cards .card-wrapper .card-img h3 {
         position: absolute;
         bottom: 5px;
