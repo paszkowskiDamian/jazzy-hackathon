@@ -102,16 +102,18 @@
 		}
 
 		.results {
-		  > div {
-			cursor: pointer;
-			padding: 0.5em 0;
+		  a {
+			> div {
+			  cursor: pointer;
+			  padding: 0.5em 0;
 
-			span {
-			  margin-left: 0.5em;
-			}
+			  span {
+				margin-left: 0.5em;
+			  }
 
-			&:hover {
-			  background-color: $primary-color-dark;
+			  &:hover {
+				background-color: $primary-color-dark;
+			  }
 			}
 		  }
 		}

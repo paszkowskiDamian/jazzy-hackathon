@@ -72,12 +72,12 @@
         .navigation .search-input .results-container .loader img {
           width: 100px;
           height: 100px; }
-      .navigation .search-input .results-container .results > div {
+      .navigation .search-input .results-container .results a > div {
         cursor: pointer;
         padding: 0.5em 0; }
-        .navigation .search-input .results-container .results > div span {
+        .navigation .search-input .results-container .results a > div span {
           margin-left: 0.5em; }
-        .navigation .search-input .results-container .results > div:hover {
+        .navigation .search-input .results-container .results a > div:hover {
           background-color: #FFA000; }
   .navigation .user-tab {
     flex: 3;
