@@ -202,7 +202,7 @@ exports = module.exports = function (app) {
 
 		Organization.model.findOne({
 			_id: id,
-		}).populate('admins').exec((err, result) => {
+		}).populate('users projects admins').exec((err, result) => {
 			if(err || !result){
 				res.status(400).send(err)
 			} else {
@@ -215,6 +215,7 @@ exports = module.exports = function (app) {
 	app.get('/project/:id', ({params}, res, rext) => {
 		const { id } = params;
 
+		
 		res.json({
 			name: 'Zjedz pizze chellange',
 			id,
