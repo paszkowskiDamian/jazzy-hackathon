@@ -10,7 +10,6 @@ import { RouteWithProps } from './RouteWithProps';
 import { Organizations } from './pages/Organizations/Organizations';
 import { Projects } from './pages/Projects/Projects';
 import { Events } from './pages/Events/Events';
-import { Navigation } from './views/Navigation/Navigation';
 
 
 class App extends Component {
@@ -22,14 +21,9 @@ class App extends Component {
     fetch('http://localhost:3005/users/4')
       .then(res => res.json())
       .then(loggedInUser => this.setState({ loggedInUser }));
-
-    fetch('http://localhost:3005/users/4')
-      .then(res => res.json())
-      .then(loggedInUser => this.setState({ loggedInUser }));
   }
 
   render() {
-    const { loggedInUser } = this.state;
     return (
       <Router>
         <div className="App">

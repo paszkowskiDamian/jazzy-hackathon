@@ -4,6 +4,7 @@
 @import 'pages/navigation.scss';
 @import 'pages/card.scss';
 @import 'pages/organizations.scss';
+@import 'pages/searchbar.scss';
 
 
 * {
@@ -18,4 +19,38 @@ a {
 
 body {
     background: $pageBackground;
+}
+
+.react-tagsinput {
+    padding-top: 4px;
+    border: none;
+    height: $input-height;
+    background: $pageBackground;
+
+    & > span {
+        display: flex;
+        margin-left: 10px;
+        background: $pageBackground;
+    }
+
+    input {
+        margin-top: 0px;
+        padding: 0px;
+    }
+
+}
+
+.react-tagsinput--focused {
+    border: none;
+}
+
+span.react-tagsinput-tag {
+    background: $primary-color-light;
+    color: $primary-color-text;
+    border: 1px solid $primary-color-dark;
+    height: 13px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

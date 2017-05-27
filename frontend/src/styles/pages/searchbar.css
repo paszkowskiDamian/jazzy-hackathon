@@ -1,0 +1,55 @@
+.organizations .search-bar {
+  margin-top: 20px;
+  height: 60px;
+  display: flex;
+  align-items: center; }
+  .organizations .search-bar div:nth-child(1) {
+    margin-left: 20px;
+    flex: 1;
+    border: 2px solid #FFA000;
+    border-radius: 15px 0px 0px 15px; }
+  .organizations .search-bar div:nth-of-type(2) {
+    flex: 1;
+    border: 2px solid #FFA000;
+    border-left: none;
+    border-right: none; }
+  .organizations .search-bar div:nth-child(3) {
+    margin-right: 20px;
+    flex: 2;
+    border: 2px solid #FFA000;
+    border-radius: 0px 15px 15px 0px; }
+    .organizations .search-bar div:nth-child(3) input {
+      margin-right: 5px; }
+  .organizations .search-bar .filter {
+    height: 55px;
+    text-align: left;
+    display: flex;
+    flex-direction: column; }
+    .organizations .search-bar .filter label {
+      font-size: 14px;
+      margin: 0px 15px; }
+    .organizations .search-bar .filter input {
+      padding: 5px 12px;
+      border: none;
+      margin: 0px 15px;
+      padding-left: 0px;
+      background: #F9F9F9;
+      position: relative;
+      transition: all .2s ease-in-out;
+      top: 12px;
+      border-bottom: 1px solid #FFA000; }
+      .organizations .search-bar .filter input:focus {
+        transition: all .2s ease-in-out;
+        outline: none;
+        border-bottom: 1px solid #212121;
+        top: 3px; }
+    .organizations .search-bar .filter input.tags-input {
+      width: 100%;
+      position: relative;
+      top: 3px;
+      margin-left: 0; }
+  .organizations .search-bar .filter-tags {
+    display: flex;
+    padding-right: 10px; }
+    .organizations .search-bar .filter-tags a {
+      margin-left: 5px; }
