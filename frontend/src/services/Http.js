@@ -13,7 +13,15 @@ export class Http {
         }
 
         return fetch(this.address + path, config)
-            .then(res => res.json());
+            .then(res => {
+                if (res.status !== 200) {
+                    return {
+                        isUserLoggedIn: false
+                    }
+                } else {
+                    return res.json()
+                }          
+            });
     }
 
     GET(path) {

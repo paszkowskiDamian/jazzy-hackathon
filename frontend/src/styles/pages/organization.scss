@@ -1,0 +1,108 @@
+.organization-container {
+  .organization-about {
+	display: flex;
+	margin-top: 3em;
+
+	> div {
+	  margin: 0 1em;
+	}
+
+	.image-container {
+	  width: 20%;
+
+	  img {
+		width: 100%;
+	  }
+	}
+
+	.about-container {
+	  width: 40%;
+	  text-align: initial;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: space-between;
+
+	  .title-wrapper {
+		padding: 0.5em 1em;
+	  }
+
+	  .description-container {
+		padding: 0.5em 1em;
+
+		.social-icons {
+		  display: flex;
+		  justify-content: center;
+		  font-size: 125%;
+		  margin-top: 2em;
+
+		  > div {
+			margin-right: 1em;
+			height: 2em;
+			width: 2em;
+			text-align: center;
+			display: flex;
+			cursor: pointer;
+			justify-content: center;
+			align-items: center;
+
+			a {
+			  cursor: pointer;
+			}
+
+			&:last-of-type {
+			  margin-right: 0;
+			}
+		  }
+		}
+	  }
+	}
+
+	.map-container {
+	  width: 40%;
+	  border: 1px solid black;
+	}
+  }
+
+  .projects-container {
+	display: flex;
+	margin-top: 2em;
+
+	.project {
+	  width: 33.33%;
+	  margin: 1em;
+	  background-color: $primary-color-dark;
+
+	  .image {
+		height: 10em;
+		background-size: cover;
+		background-position: 50%;
+	  }
+
+	  .description {
+		color: white;
+		text-align: initial;
+		padding: 0.5em;
+	  }
+	}
+  }
+
+  .members-container {
+	margin-top: 2em;
+	text-align: initial;
+	
+	.members-wrapper {
+	  text-align: center;
+	  display: flex;
+
+	  .member {
+		width: 20%;
+		padding: 1em;
+
+		img {
+		  border-radius: 50%;
+		  width: 100%;
+		}
+	  }
+	}
+  }
+}
