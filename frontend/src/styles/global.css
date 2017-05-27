@@ -203,7 +203,7 @@
 
 .login-page {
   height: 100vh;
-  background-image: url("https://image.ibb.co/jUqZ5v/login_very_dark.jpg");
+  background-image: url("https://image.ibb.co/iH1Nav/login_compress.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   display: flex; }
@@ -254,12 +254,13 @@
           border: none;
           border-radius: 12.5px;
           width: 70%;
-          margin-top: 20px; }
+          cursor: pointer; }
           .login-page .card-container .login-card .button-group input.new-account {
             background-color: white;
-            border: 1px solid #757575; }
+            margin-top: 10px; }
             .login-page .card-container .login-card .button-group input.new-account:hover {
-              background-color: #BDBDBD; }
+              background-color: white;
+              font-weight: bolder; }
           .login-page .card-container .login-card .button-group input:hover {
             background-color: #FFC107; }
           .login-page .card-container .login-card .button-group input:focus {
@@ -272,7 +273,7 @@
           flex-direction: column;
           align-items: center;
           width: 100%;
-          padding: 10px 0px; }
+          padding: 5px 0px; }
           .login-page .card-container .login-card .form-group .input-group input {
             width: 70%;
             padding: 5px 20px;
@@ -285,6 +286,19 @@
           .login-page .card-container .login-card .form-group .input-group label {
             width: 70%;
             padding: 5px; }
+
+.registration-modal {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.8;
+  background-color: black;
+  display: flex; }
+
+.hide {
+  opacity: 0;
+  display: none; }
 
 * {
   margin: 0;

@@ -215,36 +215,14 @@ exports = module.exports = function (app) {
 	app.get('/project/:id', ({params}, res, rext) => {
 		const { id } = params;
 
-		
-		res.json({
-			name: 'Zjedz pizze chellange',
-			id,
-			ownerId: 50,
-			users: [singleUser, singleUser, singleUser, singleUser],
-			posts: [{
-				title: 'Jemy',
-				image: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg',
-				body: 'Zjedz chellage opis'
-			}, {
-				title: 'Jemy 2',
-				image: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg',
-				body: 'Zjedz chellage 2 opis'
-			}, {
-				title: 'Jemy 3',
-				image: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg',
-				body: 'Zjedz chellage 3 opis'
-			}],
-			image: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg',
-			description: '<h1>Zledz pizza projekt!</h1><br/><span>O tym projekcie</span>',
-			shortDescription: 'Zjedz pizza projekt short description',
-			socialMedia: {
-				fb: 'https://expressjs.com/en/starter/installing.html',
-				github: 'https://expressjs.com/en/starter/installing.html',
-				linkedin: 'https://expressjs.com/en/starter/installing.html',
-			},
-			tags: ['jedzenie', 'pizza', 'dupy'],
-			skillsNeeded: ['eating', 'fat', 'js'],
-			likes: 5,
+		Project.model.findOne({
+			_id: id,
+		}).populate('owner users posts').exec((err, result) => {
+			if(err || !result){
+				res.status(400).send(err)
+			} else {
+				res.json(result);
+			}
 		});
 	});
 
@@ -265,9 +243,15 @@ exports = module.exports = function (app) {
 		});
 	});
 
-	app.get('/tags', ({params}, res, rext) => {
-		res.json({
-			tags: ['jedzenie', 'js', 'informatyka', 'pizza', 'dupy']
+	app.get('/organization/tags', ({params}, res, rext) => {
+		Organization.model.distinct('tags', (err, result) => {
+			if(err || !result){
+				res.status(400).send(err);
+			} else {
+				res.json({
+					tags: result
+				});
+			}
 		});
 	});
 
@@ -278,18 +262,45 @@ exports = module.exports = function (app) {
 	});
 
 	app.get('/search/:name', ({params}, res, rext) => {
-		res.json({
-			organizations: [singleOrg, singleOrg],
-			projects: [singleProj, singleProj, singleProj, singleProj],
-			events: [{
-				name: 'Event 1',
-				id: 30,
-				logo: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg'
-			}, {
-				name: 'Event 2',
-				id: 220,
-				logo: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg'
-			}]
-		})
+		const { name } = params;
+		const org = new Promise((resolve) => {
+			Organization.model.find({
+				tags: {$in: [name]}
+			}).populate('users projects admins').exec((err, result) => {
+				if(err){
+					console.log('err', err);
+				} else {
+					resolve(result);
+				}
+			});
+		});
+
+		const proj = new Promise((resolve) => {
+			Project.model.find({
+				tags: {$in: [name]}
+			}, (err, result) => {
+				if(err) {
+					console.log('err', err);
+				} else {
+					resolve(result);
+				}
+			});
+		});
+
+		Promise.all([org, proj]).then(([orgs,projs]) => {
+			res.json({
+				organizations: orgs,
+				projects: projs,
+				events: [{
+					name: 'Event 1',
+					id: 30,
+					logo: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg'
+				}, {
+					name: 'Event 2',
+					id: 220,
+					logo: 'https://image.shutterstock.com/display_pic_with_logo/698308/698308,1316410880,14/stock-photo-supreme-pizza-lifted-slice-84904912.jpg'
+				}]
+			});
+		});
 	});
 };
