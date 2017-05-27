@@ -24,10 +24,7 @@ PublicUser.add({
 	about: String,
 	skills: { type: Types.TextArray },
 	interests: { type: Types.TextArray },
-});
-
-PublicUser.schema.add({
-	password: String
+	password: String,
 });
 
 PublicUser.schema.set('toJSON', {
