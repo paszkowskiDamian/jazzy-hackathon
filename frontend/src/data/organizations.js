@@ -1,6 +1,6 @@
 export const organizations = [
     {
-        name: "Klub jedzenia",
+        name: "Creative Minds",
         id: "234",
         projects: [],
         description: "<h1>Klub jedzenia wita!</h1><br/><span>Jestesmy klubem jedzenia xD</span>>",

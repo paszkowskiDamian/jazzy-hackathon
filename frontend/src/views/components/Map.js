@@ -1,19 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import GoogleMap from 'google-map-react';
 
 import { mapStyle } from './../helpers/mapStyle'
 
 
 export class Map extends Component {
-    static propTypes = {
-        center: PropTypes.array,
-        zoom: PropTypes.number,
-        greatPlaceCoords: PropTypes.any
-    };
-
     static defaultProps = {
         zoom: 15,
-        greatPlaceCoords: { lat: 50.292693, lng: 18.666345 }
     };
     state = { center: [] }
 
