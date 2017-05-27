@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Switch
+  Switch,
+  Route,
+  Link
 } from 'react-router-dom'
 
 import { RouteWithProps } from './RouteWithProps';
@@ -32,8 +34,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navigation loggedInUser={loggedInUser} />
-
+          <Route exact path="/" component={Login} />
           <Switch>
             <RouteWithProps exact path="/" component={Login} props={{ ...this.state }} />
             <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />

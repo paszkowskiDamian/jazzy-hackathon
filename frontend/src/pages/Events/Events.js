@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 
+import { Navigation } from '../../views/Navigation/Navigation';
+
 export class Events extends Component {
     render() {
+        const { loggedInUser } = this.props;
         return (
-            <p>Events</p>
+        	<div>
+                <Navigation loggedInUser={loggedInUser} />
+                <p>Events</p>
+            </div>
         );
     }
 }
