@@ -91,15 +91,28 @@
 		background-color: white;
 		border: 1px solid black;
 
-		> div {
-		  padding: 0.5em 0;
+		.loader {
+		  display: flex;
+		  justify-content: center;
 
-		  span {
-			margin-left: 0.5em;
+		  img {
+			width: 100px;
+			height: 100px;
 		  }
+		}
 
-		  &:hover {
-			background-color: $primary-color-dark;
+		.results {
+		  > div {
+			cursor: pointer;
+			padding: 0.5em 0;
+
+			span {
+			  margin-left: 0.5em;
+			}
+
+			&:hover {
+			  background-color: $primary-color-dark;
+			}
 		  }
 		}
 	  }

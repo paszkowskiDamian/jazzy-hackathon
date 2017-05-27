@@ -66,11 +66,18 @@
       text-align: initial;
       background-color: white;
       border: 1px solid black; }
-      .navigation .search-input .results-container > div {
+      .navigation .search-input .results-container .loader {
+        display: flex;
+        justify-content: center; }
+        .navigation .search-input .results-container .loader img {
+          width: 100px;
+          height: 100px; }
+      .navigation .search-input .results-container .results > div {
+        cursor: pointer;
         padding: 0.5em 0; }
-        .navigation .search-input .results-container > div span {
+        .navigation .search-input .results-container .results > div span {
           margin-left: 0.5em; }
-        .navigation .search-input .results-container > div:hover {
+        .navigation .search-input .results-container .results > div:hover {
           background-color: #FFA000; }
   .navigation .user-tab {
     flex: 3;
