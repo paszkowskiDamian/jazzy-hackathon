@@ -5,37 +5,40 @@ import { Map } from './../../views/components/Map'
 import { Card } from '../../views/components/Card';
 import { SearchBar } from '../../views/components/SearchBar';
 import { organizations } from '../../data/organizations';
-
+import { httpService } from '../../services/Http';
 
 
 export class Organizations extends Component {
-    state = {
-        organizations
+    componentWillMount() {
+        httpService.GET('/organizations/search/all/all/50').then(res => this.setState(res))
     }
-    
+
+    state = {
+        organizations: [],
+    }
+
     render() {
         const { loggedInUser } = this.props;
         return (
-        	<div className="organizations">
+            <div className="organizations">
                 <Navigation loggedInUser={loggedInUser} />
-			    <Map />
+                <Map />
                 <SearchBar />
                 <div className="organizations-wrapper">
                     <div className="organization-cards">
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-                        <Card loggedInUser={loggedInUser} />
-			        </div>
+                        {this.state.organizations.map(organization => <Card
+                            key={organization.name}
+                            loggedInUser={loggedInUser} 
+                            title={organization.name}
+                            id={organization.id}
+                            description={organization.description}
+                            image={organization.logo}
+                            userCount={organization.users.length} />)}
+                    </div>
                 </div>
-			</div>
+            </div>
         );
     }
 }
+
+// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCfuRXAEi0pRhA_bqpzC7bhXEShLfVGCDE
