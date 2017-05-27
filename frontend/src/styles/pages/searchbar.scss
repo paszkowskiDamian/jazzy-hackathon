@@ -9,13 +9,13 @@
         div:nth-child(1) {
             margin-left: 20px;
             flex: 1;
-            border: 2px solid $primary-color-dark;
+            border: 2px solid $logo-violet;
             border-radius: 15px 0px 0px 15px;
         }
 
         div:nth-of-type(2)  {
             flex: 1;
-            border: 2px solid $primary-color-dark;
+            border: 2px solid $logo-violet;
             border-left: none;
             border-right: none;
         }
@@ -23,7 +23,7 @@
         div:nth-child(3) {
             margin-right: 20px;
             flex: 2;
-            border: 2px solid $primary-color-dark;
+            border: 2px solid $logo-violet;
             border-radius: 0px 15px 15px 0px;
 
             input {
@@ -37,8 +37,9 @@
             display: flex;
             flex-direction: column;
             label {
-                font-size: 14px;
+                font-size: 16px;
                 margin: 0px 15px;
+                color: $logo-violet;
             }
             input {
                 padding: 5px 12px;
@@ -47,15 +48,10 @@
                 padding-left: 0px;
                 background: $pageBackground;
                 position: relative;
-                transition: all .2s ease-in-out;
-                top: 12px;
-                border-bottom: 1px solid $primary-color-dark;
+                top: 5px;
 
                 &:focus {
-                    transition: all .2s ease-in-out;
                     outline: none;
-                border-bottom: 1px solid $primary-color-text;
-                top: 3px;
                 }
             }
             input.tags-input {
