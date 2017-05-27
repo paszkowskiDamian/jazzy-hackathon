@@ -1,6 +1,8 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+var PublicUser = keystone.list('PublicUser');
+var mongoose = keystone.mongoose;
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -46,42 +48,91 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 
+	app.post('/users', ({body}, res, next) => {
+		const {name, email, password} = body;
+
+		var user = new PublicUser.model({
+			name,
+			email,
+			password
+		});
+
+		user.save(() => {
+			res.status(200).end();
+		});
+	});
+
+	app.get('/users/:id', ({params, body}, res, next) => {
+		const { id } = params;
+		PublicUser.model.findOne({_id: mongoose.Types.ObjectId( id )}).exec((err, result) => {
+			if(err || !result) {
+				res.status(400).json({
+					message: `User not exist`
+				});
+			} else {
+				res.json(result);
+			}
+		});
+	});
+
 	app.post('/login', ({body}, res, next) => {
 		const {email, password} = body;
 
-		//checkIfUserExists()
-
-		res.json({
-			id: 45,
-		})
+		PublicUser.model.findOne({email, password}).exec((err, result) => {
+			if(err || !result) {
+				res.status(401).json({
+					message: 'Invalid credentials',
+				});
+			} else {
+				res.json({
+					id: result._id
+				});
+			}
+		});
 	});
 
 	app.post('/register', ({body}, res, next) => {
 		const {email, password, name, about, skills, interests, avatar} = body;
 
-		res.status(200).send();
-	});
+		var user = new PublicUser.model({
+			email,
+			password,
+			name,
+			about,
+			skills,
+			interests,
+			avatar
+		});
 
-	app.get('/users/:id', ({params}, res, next) => {
-		const { id } = params;
-
-
-		res.json({
-			name: 'Tomek Ferens',
-			id: id,
-			avatar: 'https://www.contentchampion.com/wp-content/uploads/2013/11/avatar-placeholder.png',
-			projects: [singleProj, singleProj, singleProj, singleProj],
-			organizations: [singleOrg, singleOrg, singleOrg],
-			socialMedia: {
-				fb: 'https://expressjs.com/en/starter/installing.html',
-				github: 'https://expressjs.com/en/starter/installing.html',
-				linkedin: 'https://expressjs.com/en/starter/installing.html',
-			},
-			about: 'Czesc mam na imie tomek, lubię jeść',
-			skills: ['js', 'php', 'good practice', 'architecture'],
-			interests: ['informatyka', 'dziewczyny', 'jedzenie', 'machine learnign']
+		user.save((err, result) => {
+			if(err){
+				res.status(400).send(err)
+			} else {
+				res.status(200).send(result);
+			}
 		});
 	});
+
+	// app.get('/users/:id', ({params}, res, next) => {
+	// 	const { id } = params;
+  //
+  //
+	// 	res.json({
+	// 		name: 'Tomek Ferens',
+	// 		id: id,
+	// 		avatar: 'https://www.contentchampion.com/wp-content/uploads/2013/11/avatar-placeholder.png',
+	// 		projects: [singleProj, singleProj, singleProj, singleProj],
+	// 		organizations: [singleOrg, singleOrg, singleOrg],
+	// 		socialMedia: {
+	// 			fb: 'https://expressjs.com/en/starter/installing.html',
+	// 			github: 'https://expressjs.com/en/starter/installing.html',
+	// 			linkedin: 'https://expressjs.com/en/starter/installing.html',
+	// 		},
+	// 		about: 'Czesc mam na imie tomek, lubię jeść',
+	// 		skills: ['js', 'php', 'good practice', 'architecture'],
+	// 		interests: ['informatyka', 'dziewczyny', 'jedzenie', 'machine learnign']
+	// 	});
+	// });
 
 	app.get('/organizations/search/:location/:tags', ({params}, res, next) => {
 		const {location: location_, tags: tags_} = params;
