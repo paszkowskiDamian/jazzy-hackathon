@@ -13,7 +13,7 @@
     position: relative;
 
     a {
-        color: white;
+        color: $logo-violet;
     }
 
     .logo {
@@ -35,7 +35,7 @@
         height: 100%;
 
         .active {
-            border-bottom: 4px solid white;
+            border-bottom: 4px solid $logo-violet;
         }
 
         .item {
@@ -73,9 +73,10 @@
         i {
             color: white;
             flex: 1;
-            border: 1px solid white;
+            border: 1px solid $logo-violet;
             padding: 5px 3px 6px 0px;
             border-radius: 0px 15px 15px 0px;
+            background: $logo-violet;
             cursor: pointer;
         }
     }
@@ -91,6 +92,7 @@
             text-align: right;
 
             span {
+                color: $logo-violet;
                 margin-left: 80px;
                 cursor: pointer;
             }

@@ -10,7 +10,7 @@
   z-index: 5;
   position: relative; }
   .navigation a {
-    color: white; }
+    color: #43015E; }
   .navigation .logo {
     flex: 1;
     height: 100%; }
@@ -25,7 +25,7 @@
     display: flex;
     height: 100%; }
     .navigation .navigation-tabs-wrapper .active {
-      border-bottom: 4px solid white; }
+      border-bottom: 4px solid #43015E; }
     .navigation .navigation-tabs-wrapper .item {
       flex-basis: 150px;
       display: flex;
@@ -51,9 +51,10 @@
     .navigation .search-input i {
       color: white;
       flex: 1;
-      border: 1px solid white;
+      border: 1px solid #43015E;
       padding: 5px 3px 6px 0px;
       border-radius: 0px 15px 15px 0px;
+      background: #43015E;
       cursor: pointer; }
   .navigation .user-tab {
     flex: 3;
@@ -64,6 +65,7 @@
       flex-direction: column;
       text-align: right; }
       .navigation .user-tab .user-details span {
+        color: #43015E;
         margin-left: 80px;
         cursor: pointer; }
     .navigation .user-tab .avatar {
