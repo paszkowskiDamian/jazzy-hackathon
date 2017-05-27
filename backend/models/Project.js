@@ -10,6 +10,7 @@ Project.add({
 	posts: { type: Types.Relationship, ref: 'Post', many: true },
 	image: String,
 	description: { type: Types.Html, wysiwyg: true },
+	shortDescription: String,
 	socialMedia: {
 		fb: String,
 		github: String,
