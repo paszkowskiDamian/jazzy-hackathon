@@ -33,6 +33,7 @@ export class Organizations extends Component {
                             id={organization.id}
                             description={organization.description}
                             image={organization.logo}
+														link={`/organizations/${organization.id}`}
                             userCount={organization.users.length} />)}
                     </div>
                 </div>

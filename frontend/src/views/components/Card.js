@@ -6,12 +6,14 @@ export class Card extends Component {
         console.log(this.props);
         return (
             <div className="card-wrapper">
-                <div className="card-img">
-                    {this.props.image ?
-                        <img src={this.props.image} className="image" alt="some-organization" /> :
-                        <img src={'https://source.unsplash.com/random'} alt="some-organization" />}
-                    <h3>{this.props.title}</h3>
-                </div>
+							<a href={this.props.link}>
+								<div className="card-img">
+									{this.props.image ?
+										<img src={this.props.image} className="image" alt="some-organization" /> :
+										<img src={'https://source.unsplash.com/random'} alt="some-organization" />}
+									<h3>{this.props.title}</h3>
+								</div>
+							</a>
                 <div className="card-details">
                     <div className="name">
                         <span>Creative Minds</span>
