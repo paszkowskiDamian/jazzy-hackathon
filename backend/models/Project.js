@@ -5,9 +5,9 @@ var Project = new keystone.List('Project');
 
 Project.add({
 	name: String,
-	ownerId: { type: Types.Relationship, ref: 'Organization' },
+	owner: { type: Types.Relationship, ref: 'Organization' },
 	users: { type: Types.Relationship, ref: 'PublicUser', many: true },
-	posts: { type: Types.TextArray },
+	posts: { type: Types.Relationship, ref: 'Post', many: true },
 	image: String,
 	description: { type: Types.Html, wysiwyg: true },
 	socialMedia: {
