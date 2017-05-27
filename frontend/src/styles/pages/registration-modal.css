@@ -1,12 +1,41 @@
-.registration-modal {
+.modal {
   position: absolute;
-  z-index: 100;
-  width: 100%;
-  height: 100vh;
-  opacity: 0.8;
-  background-color: black;
-  display: flex; }
-
-.hide {
-  opacity: 0;
-  display: none; }
+  width: 100%; }
+  .modal .bg-modal {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.8;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    bottom: 0; }
+  .modal .hide {
+    opacity: 0;
+    bottom: 150%;
+    transition: 0.3s ease-in-out; }
+  .modal .modal-card-container {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    bottom: 0; }
+  .modal .swipe {
+    bottom: 150%;
+    transition: 0.3s ease-in-out; }
+  .modal .modal-card {
+    position: absolute;
+    top: 100%;
+    opacity: 1;
+    background: white;
+    z-index: 200;
+    width: 70%;
+    height: 70%; }
