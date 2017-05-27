@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { RegistrationModal } from './../../views/components/RegistrationModal'
 
 export class Login extends Component {
     render() {
         return (
             <div className="login-page">
+                <RegistrationModal hide={false} />
                 <div className="logo">LOGO</div>
                 {/*<NavLink to="/organizations" activeClassName="active" exact className="item">Organizacje</NavLink>*/}
                 <div className="text-container" >
