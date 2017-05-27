@@ -12,18 +12,18 @@
     }
 
     .card-wrapper {
-        border-radius: 2px;
+        border-radius: $card-radious;
         height: 360px;
         flex-basis: 21%;
         margin-bottom: 40px;
         margin-left: 3%;
         overflow: hidden;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        @include card-shadow();
         transition: all .2s ease-in-out;
         cursor: pointer;
 
         &:hover {
-            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            @include card-shadow-hover();
         }
 
         .card-img {
