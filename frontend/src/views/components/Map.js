@@ -24,7 +24,7 @@ export class Map extends Component {
         return {
             panControl: false,
             mapTypeControl: false,
-            scrollwheel: true,
+            scrollwheel: false,
             styles: mapStyle,
         }
     }

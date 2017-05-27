@@ -145,6 +145,25 @@
   display: flex;
   justify-content: center; }
 
+.login-page {
+  height: 100vh;
+  background-image: url("http://i.imgur.com/ceZG2lJ.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex; }
+  .login-page .text {
+    flex: 3; }
+  .login-page .card-container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%); }
+    .login-page .card-container .login-card {
+      width: 70%;
+      height: 70vh;
+      background-color: white; }
+
 * {
   margin: 0;
   padding: 0;
