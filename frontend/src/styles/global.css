@@ -145,6 +145,91 @@
   display: flex;
   justify-content: center; }
 
+.login-page {
+  height: 100vh;
+  background-image: url("https://image.ibb.co/jUqZ5v/login_very_dark.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex; }
+  .login-page .logo {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    padding: 20px 40px; }
+  .login-page .text-container {
+    flex: 3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 15%; }
+    .login-page .text-container h1 {
+      font-size: 4em; }
+    .login-page .text-container p {
+      font-size: 1.4em; }
+    .login-page .text-container .text-card {
+      width: 60%;
+      text-shadow: 0px 0px 2px black; }
+  .login-page .card-container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%); }
+    .login-page .card-container .login-card {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      border-radius: 2px;
+      width: 70%;
+      height: 70vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; }
+      .login-page .card-container .login-card div {
+        display: flex;
+        width: 100%;
+        justify-content: center; }
+      .login-page .card-container .login-card .button-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        .login-page .card-container .login-card .button-group input {
+          background-color: #FFA000;
+          height: 40px;
+          border: none;
+          border-radius: 12.5px;
+          width: 70%;
+          margin-top: 20px; }
+          .login-page .card-container .login-card .button-group input.new-account {
+            background-color: white;
+            border: 1px solid #757575; }
+            .login-page .card-container .login-card .button-group input.new-account:hover {
+              background-color: #BDBDBD; }
+          .login-page .card-container .login-card .button-group input:hover {
+            background-color: #FFC107; }
+          .login-page .card-container .login-card .button-group input:focus {
+            outline: none; }
+      .login-page .card-container .login-card .form-group {
+        display: flex;
+        flex-direction: column; }
+        .login-page .card-container .login-card .form-group .input-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          padding: 10px 0px; }
+          .login-page .card-container .login-card .form-group .input-group input {
+            width: 70%;
+            padding: 5px 20px;
+            font-size: 1.1em;
+            height: 25px;
+            border-radius: 20px 20px;
+            border: 1px solid #757575; }
+            .login-page .card-container .login-card .form-group .input-group input:focus {
+              outline: none; }
+          .login-page .card-container .login-card .form-group .input-group label {
+            width: 70%;
+            padding: 5px; }
+
 * {
   margin: 0;
   padding: 0;

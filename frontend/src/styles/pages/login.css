@@ -1,0 +1,24 @@
+.login-page {
+  height: 100vh;
+  background-image: url("https://image.ibb.co/d65qdF/login_dark.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex; }
+  .login-page .text-container {
+    flex: 3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .login-page .text-container .text-card {
+      width: 60%; }
+  .login-page .card-container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%); }
+    .login-page .card-container .login-card {
+      width: 70%;
+      height: 70vh;
+      background-color: white; }
