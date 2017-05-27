@@ -36,6 +36,7 @@
         background: #FFC107; }
   .navigation .search-input {
     flex: 3;
+    position: relative;
     color: #212121;
     display: flex;
     justify-content: space-between;
@@ -57,6 +58,21 @@
       border-radius: 0px 15px 15px 0px;
       background: #43015E;
       cursor: pointer; }
+    .navigation .search-input .results-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      right: 0;
+      text-align: initial;
+      background-color: white;
+      border: 1px solid black; }
+      .navigation .search-input .results-container > div {
+        padding: 0.5em 0; }
+        .navigation .search-input .results-container > div span {
+          margin-left: 0.5em; }
+        .navigation .search-input .results-container > div:hover {
+          background-color: #FFA000; }
   .navigation .user-tab {
     flex: 3;
     display: flex;
