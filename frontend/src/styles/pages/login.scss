@@ -1,12 +1,36 @@
 .login-page {
     height: 100vh;
-    background-image: url("http://i.imgur.com/ceZG2lJ.jpg");
+    background-image: url("https://image.ibb.co/jUqZ5v/login_very_dark.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
 
-    .text {
+    .logo {
+        position: absolute;
+        font-weight: bold;
+        color: white;
+        padding: 20px 40px;;
+    }
+
+    .text-container {
         flex: 3;
+        color: white;
+        display: flex;
+        justify-content: center;
+        margin-top: 15%;
+
+        h1 {
+            font-size: 4em;
+        }
+        
+        p {
+            font-size: 1.4em;
+        }
+
+        .text-card{
+            width: 60%;
+            text-shadow: 0px 0px 2px black;
+        } 
     }
 
     .card-container {
@@ -17,9 +41,83 @@
         -webkit-filter: brightness(100%);
 
         .login-card {
+            @include card-shadow-hover();
+            border-radius: $card-radious;
             width: 70%;
             height: 70vh;
             background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+
+            div {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .button-group {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                input {
+                    background-color: $primary-color-dark;
+                    height: 40px;
+                    border: none;
+                    border-radius: $form-element-height/2;
+                    width: $form-elemt-width;
+                    margin-top: 20px;
+
+                    &.new-account {
+                        background-color: white;
+                        border: 1px solid $secondary-text-color;
+                        &:hover{
+                            background-color: $divider-color;
+                        }
+                    }
+
+                    &:hover{
+                        background-color: $primary-color;
+                    }
+
+                    &:focus{
+                            outline: none;
+                        }
+                }
+            }
+
+            .form-group{
+                display: flex;
+                flex-direction: column;
+
+                .input-group{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                    padding: 10px 0px;
+                    input {
+                        width: $form-elemt-width;
+                        padding: 5px 20px;
+                        font-size: 1.1em;
+                        height: $form-element-height;
+                        border-radius: 20px 20px;
+                        border: 1px solid $secondary-text-color;
+
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+
+                    label {
+                        width: 70%;
+                        padding: 5px;
+                    }
+                }
+
+            }
         }
     }
 

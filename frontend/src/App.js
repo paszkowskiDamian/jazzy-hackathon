@@ -36,7 +36,6 @@ class App extends Component {
         <div className="App">
           <Route exact path="/" component={Login} />
           <Switch>
-            <RouteWithProps exact path="/" component={Login} props={{ ...this.state }} />
             <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />
             <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />
             <RouteWithProps path="/projects" component={Projects} props={{ ...this.state }} />
