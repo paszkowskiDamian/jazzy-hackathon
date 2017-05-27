@@ -3,12 +3,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from 'react-router-dom'
 
+import { httpService } from './services/Http';
 import { RouteWithProps } from './RouteWithProps';
 import { Organizations } from './pages/Organizations/Organizations';
-import { Navigation } from './views/Navigation/Navigation';
 import { Projects } from './pages/Projects/Projects';
 import { Events } from './pages/Events/Events';
 import { Login } from './pages/Login/Login'
@@ -20,8 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3005/users/4')
-      .then(res => res.json())
+    httpService.GET('/users/5929385ba77b9a1d5e3a2693')
       .then(loggedInUser => this.setState({ loggedInUser }));
   }
 

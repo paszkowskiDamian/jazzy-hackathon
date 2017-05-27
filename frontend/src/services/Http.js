@@ -4,13 +4,16 @@ export class Http {
     }
 
     makeRequest(method, path, options = null) {
-        return fetch(this.address + path, {
+        const config = {
             method,
             body: options,
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).then(res => res.json());
+        }
+
+        return fetch(this.address + path)
+            .then(res => res.json());
     }
 
     GET(path) {
@@ -22,4 +25,4 @@ export class Http {
     }
 }
 
-export const httpService = new Http('localhost:3005');
+export const httpService = new Http('http://localhost:3005');
