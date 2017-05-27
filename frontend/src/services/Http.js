@@ -4,6 +4,8 @@ export class Http {
     }
 
     makeRequest(method, path, options = null) {
+        let isUserLoggedIn = true;
+
         const config = {
             method,
             body: options,
@@ -18,10 +20,12 @@ export class Http {
                     return {
                         isUserLoggedIn: false
                     }
-                } else {
-                    return res.json()
-                }          
-            });
+                } else return res.json();      
+            })
+            .then(res => ({
+                isUserLoggedIn,
+                ...res
+            }))
     }
 
     GET(path) {

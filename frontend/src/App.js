@@ -12,22 +12,23 @@ import { RouteWithProps } from './RouteWithProps';
 
 class App extends Component {
   state = {
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    userId: '',
   }
 
-  setUserAuthentication = (isUserLoggedIn) => {
-    this.setState({isUserLoggedIn})
+  setUserAuthentication = (res) => {
+    this.setState({isUserLoggedIn: res.isUserLoggedIn, userId: res.id})
   }
   
   render() {
-    const { isUserLoggedIn } = this.state;
+    const { isUserLoggedIn, userId } = this.state;
     return (
       <Router>
         <div className="App">
           <RouteWithProps exact path="/" component={Login} props={{ ...this.state, setUserAuthentication: this.setUserAuthentication }} />
           {
             isUserLoggedIn &&
-            <Home isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
+            <Home userId={userId} isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
           }
         </div>
       </Router>

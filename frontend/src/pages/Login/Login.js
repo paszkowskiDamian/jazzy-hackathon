@@ -29,7 +29,7 @@ export class Login extends Component {
         const { email, password } = this.state;
         const { setUserAuthentication } = this.props;
         httpService.POST('/login', JSON.stringify({ email, password }))
-            .then(res => setUserAuthentication(res));
+            .then((res) => setUserAuthentication(res));
     }
 
     render() {
