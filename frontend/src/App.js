@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Switch
+  Switch,
+  Route,
+  Link
 } from 'react-router-dom'
 
 import { RouteWithProps } from './RouteWithProps';
@@ -31,10 +33,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navigation loggedInUser={loggedInUser} />
-
+          <Route exact path="/" component={() => <Link to="/">HOME</Link>} />
           <Switch>
-            <RouteWithProps exact path="/" component={Organizations} props={{ ...this.state }} />
+            <RouteWithProps path="/organizations" component={Organizations} props={{ ...this.state }} />
             <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />
             <RouteWithProps path="/projects" component={Projects} props={{ ...this.state }} />
           </Switch>
