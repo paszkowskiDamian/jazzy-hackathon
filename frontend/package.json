@@ -5,9 +5,11 @@
   "dependencies": {
     "flexboxgrid": "^6.3.1",
     "font-awesome": "^4.7.0",
+    "google-map-react": "^0.24.0",
     "node-sass-chokidar": "^0.0.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-google-maps": "^6.3.0",
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {

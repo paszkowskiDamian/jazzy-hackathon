@@ -5,17 +5,28 @@
   justify-content: center;
   align-items: center;
   color: white;
-  height: 60px; }
+  height: 60px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  z-index: 5;
+  position: relative; }
+  .navigation a {
+    color: white; }
   .navigation .logo {
-    flex: 1; }
+    flex: 1;
+    height: 100%; }
+    .navigation .logo a {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   .navigation .navigation-tabs-wrapper {
     flex: 7;
     display: flex;
     height: 100%; }
     .navigation .navigation-tabs-wrapper .active {
-      background: #FFC107; }
+      border-bottom: 4px solid white; }
     .navigation .navigation-tabs-wrapper .item {
-      color: white;
       flex-basis: 150px;
       display: flex;
       align-items: center;
@@ -38,8 +49,8 @@
       .navigation .search-input input:focus {
         outline: none; }
     .navigation .search-input i {
-      flex: 1;
       color: white;
+      flex: 1;
       border: 1px solid white;
       padding: 5px 3px 6px 0px;
       border-radius: 0px 15px 15px 0px;
@@ -47,11 +58,11 @@
   .navigation .user-tab {
     flex: 3;
     display: flex;
-    text-align: left;
     justify-content: space-around; }
     .navigation .user-tab .user-details {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      text-align: right; }
       .navigation .user-tab .user-details span {
         margin-left: 80px;
         cursor: pointer; }
@@ -59,4 +70,11 @@
       width: 40px;
       border-radius: 50%;
       height: 40px;
-      border: 1px solid black; }
+      overflow: hidden;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 20px; }
+      .navigation .user-tab .avatar img {
+        height: 100%; }
