@@ -14,15 +14,20 @@ class App extends Component {
   state = {
     isUserLoggedIn: false
   }
+
+  setUserAuthentication = (isUserLoggedIn) => {
+    this.setState({isUserLoggedIn})
+  }
+  
   render() {
     const { isUserLoggedIn } = this.state;
     return (
       <Router>
         <div className="App">
-          <RouteWithProps exact path="/" component={Login} />
+          <RouteWithProps exact path="/" component={Login} props={{ ...this.state, setUserAuthentication: this.setUserAuthentication }} />
           {
             isUserLoggedIn &&
-            <Home isUserLoggedIn={isUserLoggedIn} />
+            <Home isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
           }
         </div>
       </Router>
