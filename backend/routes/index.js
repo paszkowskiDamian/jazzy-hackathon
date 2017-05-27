@@ -135,11 +135,19 @@ exports = module.exports = function (app) {
 	// 	});
 	// });
 
-	app.get('/organizations/search/:location/:tags', ({params}, res, next) => {
-		const {location: location_, tags: tags_} = params;
+	app.get('/organizations/search/:location/:tags/:radius', ({params}, res, next) => {
+		const {location: location_, tags: tags_, radius} = params;
 		const location = decodeURI(location_).split(',');
 		const tags = decodeURI(tags_).split(',');
-		const radius = 50;
+		let queriesAnd = [];
+
+		if(location_ != 'all') {
+			queriesAnd.push({$where: getQueryFunction()});
+		}
+
+		if(tags_ != 'all') {
+			queriesAnd.push({ tags: { $in: tags } });
+		}
 
 		function getQueryFunction() {
 			return `function() {
@@ -168,10 +176,13 @@ exports = module.exports = function (app) {
 			}`;
 		}
 
-		Organization.model.find({ $and : [
-			{$where: getQueryFunction()},
-			{ tags: { $in: tags } },
-		] }, (err, result) => {
+		let query = {};
+
+		if(queriesAnd.length) {
+			query = { $and : queriesAnd };
+		}
+
+		Organization.model.find(query, (err, result) => {
 
 			if(err) {
 				res.status(400).json({
