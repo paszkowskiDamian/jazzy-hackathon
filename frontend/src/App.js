@@ -8,6 +8,7 @@ import {
 
 import { RouteWithProps } from './RouteWithProps';
 import { Organizations } from './pages/Organizations/Organizations';
+import { Organization } from './pages/Organizations/Organization';
 import { Navigation } from './views/Navigation/Navigation';
 import { Projects } from './pages/Projects/Projects';
 import { Events } from './pages/Events/Events';
@@ -37,6 +38,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Switch>
             <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />
+            <RouteWithProps exact path="/organizations/:id" component={Organization} props={{ ...this.state }} />
             <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />
             <RouteWithProps path="/projects" component={Projects} props={{ ...this.state }} />
           </Switch>
