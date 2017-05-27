@@ -12,13 +12,20 @@ export class Map extends Component {
     };
 
     static defaultProps = {
-        center: [50.292693, 18.666345],
         zoom: 15,
         greatPlaceCoords: { lat: 50.292693, lng: 18.666345 }
     };
+    state = { center: [] }
 
-    constructor(props) {
-        super(props);
+    componentWillMount() {
+        console.log("jje")
+        if (navigator) {
+            navigator.geolocation.getCurrentPosition((position => {
+                this.setState({ center: [position.coords.latitude, position.coords.longitude] })
+            }));
+        } else {
+            this.setState({ center: [50.292693, 18.666345] })
+        }
     }
 
     createMapOptions(map) {
@@ -31,15 +38,18 @@ export class Map extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
-            <GoogleMap
-                apiKey="AIzaSyBLS_NpKl0zF9eUlWwPxsGEb6hReanSNLo" // set if you need stats etc ...
-                center={this.props.center}
-                zoom={this.props.zoom}
-                options={this.createMapOptions}>
-                {/*<MyGreatPlace lat={59.955413} lng={30.337844} text={'A'}  />
+            <div style={{ width: '100%', height: '60vh' }}>
+                <GoogleMap
+                    apiKey="AIzaSyBLS_NpKl0zF9eUlWwPxsGEb6hReanSNLo" // set if you need stats etc ...
+                    center={this.state.center}
+                    zoom={this.props.zoom}
+                    options={this.createMapOptions}>
+                    {/*<MyGreatPlace lat={59.955413} lng={30.337844} text={'A'}  />
         <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} />*/}
-            </GoogleMap>
+                </GoogleMap>
+            </div>
         );
     }
 }

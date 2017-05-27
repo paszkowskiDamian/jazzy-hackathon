@@ -9,25 +9,23 @@ export class Organizations extends Component {
         const { loggedInUser } = this.props;
         return (
         	<div>
-			<div style={{ width: '100%', height: '60vh' }}>
-	<Map />
-		</div>
-            <div className="organizations-wrapper">
-                <div className="organization-cards">
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
-                    <Card loggedInUser={loggedInUser} />
+			    <Map />
+                <div className="organizations-wrapper">
+                    <div className="organization-cards">
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+                        <Card loggedInUser={loggedInUser} />
+			        </div>
                 </div>
-            </div>
-				</div>
+			</div>
         );
     }
 }
