@@ -21,8 +21,8 @@ export class Home extends Component {
       isUserLoggedIn ?
       <Switch>
         <RouteWithProps path="/panel" component={Panel} props={{...propsToPass}} />
-        <RouteWithProps path="/organizations" component={Organizations} props={{...propsToPass}} />
-        <RouteWithProps path="/organizations/:id" component={Organization} props={{...propsToPass}} />
+				<RouteWithProps path="/organizations/:id" component={Organization} props={{...propsToPass}} />
+				<RouteWithProps path="/organizations" component={Organizations} props={{...propsToPass}} />
         <RouteWithProps path="/events" component={Events} props={{...propsToPass}} />
         <RouteWithProps path="/projects" component={Projects} props={{...propsToPass}} />
       </Switch> :
