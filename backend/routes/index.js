@@ -2,6 +2,7 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 var PublicUser = keystone.list('PublicUser');
+var Organization = keystone.list('Organization');
 var mongoose = keystone.mongoose;
 
 // Common Middleware
@@ -138,10 +139,49 @@ exports = module.exports = function (app) {
 		const {location: location_, tags: tags_} = params;
 		const location = decodeURI(location_).split(',');
 		const tags = decodeURI(tags_).split(',');
+		const radius = 50;
 
+		function getQueryFunction() {
+			return `function() {
+				function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+					var R = 6371; // Radius of the earth in km
+					var dLat = deg2rad(lat2-lat1);  // deg2rad below
+					var dLon = deg2rad(lon2-lon1);
+					var a =
+						Math.sin(dLat/2) * Math.sin(dLat/2) +
+						Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+						Math.sin(dLon/2) * Math.sin(dLon/2)
+					;
+					var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+					var d = R * c; // Distance in km
+					return d;
+				}
 
-		res.json({
-			organizations: [singleOrg, singleOrg, singleOrg]
+				function deg2rad(deg) {
+					return deg * (Math.PI/180)
+				}
+				
+				return (
+					this.location.geo && 
+					getDistanceFromLatLonInKm( ${location[0]},  ${location[1]}, this.location.geo[0], this.location.geo[1]) < ${radius}
+				)
+			}`;
+		}
+
+		Organization.model.find({ $and : [
+			{$where: getQueryFunction()},
+			{ tags: { $in: tags } },
+		] }, (err, result) => {
+
+			if(err) {
+				res.status(400).json({
+					message: err,
+				});
+			} else {
+				res.json({
+					organizations: result,
+				});
+			}
 		});
 	});
 
