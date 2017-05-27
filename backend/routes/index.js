@@ -1,6 +1,8 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+var PublicUser = keystone.list('PublicUser');
+var mongoose = keystone.mongoose;
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -21,6 +23,31 @@ exports = module.exports = function (app) {
 
 	// Views
 	app.get('/', routes.views.index);
+
+	app.post('/users', ({body}, res, next) => {
+		const {name, email, password} = body;
+
+		var user = new PublicUser.model({
+			name,
+			email,
+			password
+		});
+
+		user.save(() => {
+			res.status(200).end();
+		});
+	});
+
+	app.get('/users/:id', ({params, body}, res, next) => {
+		const { id } = params;
+		PublicUser.model.findOne({_id: mongoose.Types.ObjectId( id )}).exec((err, result) => {
+			if(err) {
+				res.send(500).end(err);
+			} else {
+				res.json(result);
+			}
+		})
+	});
 
 	app.get('/users/:id', ({params}, res, next) => {
 		const { id } = params;
