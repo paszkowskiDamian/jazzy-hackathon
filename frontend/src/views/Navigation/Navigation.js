@@ -37,13 +37,14 @@ export class Navigation extends Component {
 
     render() {
         const { name, avatar } = this.props.loggedInUser;
+        const { logOut } = this.props;
 
         return (
             <div className={classnames('navigation', {'hide-nav': this.state.scrollDirectionDown})}>
                 <Logo />
                 <Tabs />
                 <SearchInput />
-                <UserTab name={name} avatar={avatar} />
+                <UserTab logOut={logOut} name={name} avatar={avatar} />
             </div>
         );
     }

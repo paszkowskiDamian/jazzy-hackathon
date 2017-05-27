@@ -18,10 +18,10 @@ export class Organizations extends Component {
     }
 
     render() {
-        const { loggedInUser } = this.props;
+        const { loggedInUser, logOut } = this.props;
         return (
             <div className="organizations">
-                <Navigation loggedInUser={loggedInUser} />
+                <Navigation logOut={logOut} loggedInUser={loggedInUser} />
                 <Map />
                 <SearchBar />
                 <div className="organizations-wrapper">
