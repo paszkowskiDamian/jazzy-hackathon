@@ -215,7 +215,8 @@
     .login-page .logo svg {
       fill: white; }
   .login-page .logo-purple svg {
-    fill: #43015E; }
+    fill: #43015E;
+    height: 4vh; }
   .login-page .text-container {
     flex: 3;
     color: white;
@@ -246,7 +247,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around; }
-      .login-page .card-container .login-card div {
+      .login-page .card-container .login-card .form-group, .login-page .card-container .login-card .button-group {
         display: flex;
         width: 100%;
         justify-content: center; }

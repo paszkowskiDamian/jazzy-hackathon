@@ -21,8 +21,10 @@
 
     }
     .logo-purple {
+        
         svg {
             fill: $logo-violet;
+            height: 4vh;
             }
         }
 
@@ -68,7 +70,7 @@
             justify-content: space-around;
 
 
-            div {
+            .form-group,.button-group {
                 display: flex;
                 width: 100%;
                 justify-content: center;
