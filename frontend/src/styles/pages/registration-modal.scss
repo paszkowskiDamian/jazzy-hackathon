@@ -35,7 +35,35 @@
         align-items: center;
         transition: 0.5s;
         bottom: 0;
-        margin-bottom: 15vh;
+        margin-bottom: 10vh;
+    }
+
+    .formButton {
+        border: none;
+        width: 100%;
+        height: 30px;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            background: $primary-color;
+        }
+
+        &:active {
+            outline: none;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        @media screen and (max-width: $media-medium) {
+            height: 60px;
+            border-radius: 30px;
+        }
+
     }
 
     .fade{
@@ -58,10 +86,91 @@
 
     .modal-card{
         opacity: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         background: white;
         z-index: 200;
         width: 80%;
         height: 70vh;
+        padding: 10px 30px;
+        @include card-shadow-hover();
+        border-radius: $card-radious;
+
+        @media screen and (max-width: $media-medium) {
+            width: 40%;
+            height: 85vh;
+        }
+
+    }
+
+    &-header {
+        flex: 1;
+        width: 100%;
+
+        h2 {
+            color: $primary-color-text;
+        }
+
+        p {
+            color: $secondary-text-color;
+        }
+    }
+
+    .form{
+        display: flex;
+        width: 100%;
+        flex: 8;
+
+        @media screen and (max-width: $media-medium) {
+
+        flex-direction: column;
+        justify-content: center;
+
+        }
+
+        &-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 5vh;
+        }
+
+        @media screen and (max-width: $media-medium) {
+            .mobile-off {
+                display: none;
+            }
+        }
+
+        &-gruop {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+
+            label {
+                width: 70%;
+                padding: 5px;
+            }
+
+            input {
+                width: 80%;
+                padding: 5px 20px;
+                font-size: 1.1em;
+                height: $form-element-height;
+                border-radius: 20px 20px;
+                border: 1px solid $secondary-text-color;
+
+                @media screen and (max-width: $media-medium) {
+                    width: 95%;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+            }
+        }
+
     }
     
 }

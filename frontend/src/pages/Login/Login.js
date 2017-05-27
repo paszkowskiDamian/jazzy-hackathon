@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { RegistrationModal } from './../../views/components/RegistrationModal'
+import { Logo } from './../../views/components/Logo'
 
 export class Login extends Component {
-    state = {isHidden: true}
+    state = { isHidden: true }
 
     toggleModal = () => {
-        this.setState({isHidden: !this.state.isHidden} )
+        this.setState({ isHidden: !this.state.isHidden })
     }
 
     render() {
         return (
             <div className="login-page">
                 <RegistrationModal toggleModal={this.toggleModal} isHidden={this.state.isHidden} />
-                <div className="logo">LOGO</div>
+                <div className="logo-card"><Logo /></div>
                 <div className="text-container" >
                     <div className="text-card">
                         <h1>Cześć!</h1>
@@ -22,20 +23,20 @@ export class Login extends Component {
                 </div>
                 <div className="card-container" >
                     <div className="login-card">
-                        <div className="logo-card">LOGO</div>
+                        <div className="logo-card logo-purple"><Logo /></div>
                         <div className="form-group">
                             <div className="input-group">
                                 <label>Login:</label>
-                                <input type="text" placeholder="Podaj swój login"/>
+                                <input type="text" placeholder="Podaj swój login" />
                             </div>
                             <div className="input-group">
                                 <label>Hasło:</label>
-                                <input type="password" placeholder="Podaj swoje hasło"/>
+                                <input type="password" placeholder="Podaj swoje hasło" />
                             </div>
                         </div>
                         <div className="button-group">
                             <input type="button" value="Zaloguj się" />
-                            <input type="button" className="new-account" onClick={() => this.toggleModal() } value="Utwórz nowe konto" />
+                            <input type="button" className="new-account" onClick={() => this.toggleModal()} value="Utwórz nowe konto" />
                         </div>
                     </div>
                 </div>

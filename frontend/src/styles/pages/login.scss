@@ -13,8 +13,18 @@
         font-weight: bold;
         color: white;
         z-index: 11;
-        padding: 20px 40px;;
+        padding: 20px 40px;
+
+        svg {
+            fill: white;
+        }
+
     }
+    .logo-purple {
+        svg {
+            fill: $logo-violet;
+            }
+        }
 
     .text-container {
         flex: 3;
