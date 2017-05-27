@@ -1,10 +1,8 @@
+/* eslint no-restricted-globals: 0 */
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { RegistrationModal } from './../../views/components/RegistrationModal'
 import { Logo } from './../../views/components/Logo'
-import {
-  Redirect
-} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { httpService } from '../../services/Http';
 
@@ -35,10 +33,11 @@ export class Login extends Component {
     render() {
         const { email, password } = this.state;
         const { isUserLoggedIn } = this.props;
+        const path = location.pathname;
 
         return (
             isUserLoggedIn ?
-                <Redirect to="/panel" /> : (
+                <Redirect to={`${path === '/' ? '/panel' : path }`} /> : (
                     <div className="login-page">
                         <RegistrationModal toggleModal={this.toggleModal} isHidden={this.state.isHidden} />
                         <div className="logo-card"><Logo /></div>

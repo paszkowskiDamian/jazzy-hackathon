@@ -58,7 +58,7 @@ export class SearchInput extends Component {
 									<span>{project.name}</span>
 								</div>))}
 								<div className='loader'>
-									<img src='http://apdw.com/images/balls_loading.gif?x13037' />
+									<img src='http://apdw.com/images/balls_loading.gif?x13037' alt='loading' />
 								</div>
 							</div>
             </div>

@@ -19,8 +19,16 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    httpService.GET('/users/5929385ba77b9a1d5e3a2693')
-      .then(loggedInUser => this.setState({ loggedInUser }));
+    const { userId, setUserAuthentication } = this.props;
+    httpService.GET(`/users/${userId}`)
+      .then(res => {
+        const { isUserLoggedIn, ...rest } = res;
+        setUserAuthentication(isUserLoggedIn);
+        if (isUserLoggedIn) {
+          console.log(res)
+          this.setState({...rest})
+        }
+      });
   }
 
   render() {
@@ -31,8 +39,8 @@ export class Home extends Component {
         <RouteWithProps exact path="/panel" component={Panel} props={{ ...this.state }} />
         <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />
         <RouteWithProps exact path="/organizations/:id" component={Organization} props={{ ...this.state }} />
-        <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />
-        <RouteWithProps path="/projects" component={Projects} props={{ ...this.state }} />
+        <RouteWithProps exact path="/events" component={Events} props={{ ...this.state }} />
+        <RouteWithProps exact path="/projects" component={Projects} props={{ ...this.state }} />
       </Switch> :
       <Redirect to="/"/>
     );

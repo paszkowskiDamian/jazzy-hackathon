@@ -61,7 +61,7 @@ export class Organization extends Component {
 					<div className="col-xs-10">
 						<div className="organization-about">
 							<div className="image-container">
-								<img src={this.state.image}/>
+								<img src={this.state.image} alt='organization' />
 							</div>
 							<div className="about-container">
 								<div className='title-wrapper'>
@@ -108,7 +108,7 @@ export class Organization extends Component {
 							<div className='members-wrapper'>
 								{this.state.users.map((user, id) => (<div className='member' key={id}>
 									<a href={`/users/${user.id}`}>
-										<img src={user.avatar || 'http://www.pi-cube.com/wp-content/uploads/2015/04/team-placeholder.jpg'}/>
+										<img src={user.avatar || 'http://www.pi-cube.com/wp-content/uploads/2015/04/team-placeholder.jpg'} alt='organization' />
 									</a>
 									<span>{user.name}</span>
 								</div>))}

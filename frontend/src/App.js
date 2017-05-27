@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
 } from 'react-router-dom';
 
 import { Home } from './Home'
@@ -16,8 +14,24 @@ class App extends Component {
     userId: '',
   }
 
-  setUserAuthentication = (res) => {
-    this.setState({isUserLoggedIn: res.isUserLoggedIn, userId: res.id})
+  componentWillUnmount() {
+    console.log('TEST')
+  }
+
+  componentWillMount() {
+    // const userId = localStorage.getItem("userId");
+    // if (userId !== '') {
+    //   this.setState({isUserLoggedIn: true})
+    // } else {
+    //   this.setState({isUserLoggedIn: false})
+    // }
+  }
+
+  setUserAuthentication = (isUserLoggedIn, ...rest) => {
+    // if (res.isUserLoggedIn) {
+    //   localStorage.setItem('userId', res.id);
+    // }
+    this.setState({isUserLoggedIn: isUserLoggedIn, ...rest})
   }
   
   render() {
@@ -25,7 +39,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <RouteWithProps exact path="/" component={Login} props={{ ...this.state, setUserAuthentication: this.setUserAuthentication }} />
+          <RouteWithProps path="/" component={Login} props={{ ...this.state, setUserAuthentication: this.setUserAuthentication }} />
           {
             isUserLoggedIn &&
             <Home userId={userId} isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
