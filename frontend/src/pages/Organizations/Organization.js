@@ -54,8 +54,6 @@ export class Organization extends Component {
 	
 	render() {
 		const { loggedInUser } = this.props;
-
-		console.log('ha ', this.state);
 		return (
 			<div className="organization-container">
 				<Navigation loggedInUser={loggedInUser} />

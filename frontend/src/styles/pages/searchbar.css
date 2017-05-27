@@ -1,35 +1,35 @@
-.organizations .search-bar {
+.search-bar {
   margin-top: 20px;
   height: 60px;
   display: flex;
   align-items: center; }
-  .organizations .search-bar div:nth-child(1) {
+  .search-bar div:nth-child(1) {
     margin-left: 20px;
     flex: 1;
     border: 2px solid #43015E;
     border-radius: 15px 0px 0px 15px; }
-  .organizations .search-bar div:nth-of-type(2) {
+  .search-bar div:nth-of-type(2) {
     flex: 1;
     border: 2px solid #43015E;
     border-left: none;
     border-right: none; }
-  .organizations .search-bar div:nth-child(3) {
+  .search-bar div:nth-child(3) {
     margin-right: 20px;
     flex: 2;
     border: 2px solid #43015E;
     border-radius: 0px 15px 15px 0px; }
-    .organizations .search-bar div:nth-child(3) input {
+    .search-bar div:nth-child(3) input {
       margin-right: 5px; }
-  .organizations .search-bar .filter {
+  .search-bar .filter {
     height: 55px;
     text-align: left;
     display: flex;
     flex-direction: column; }
-    .organizations .search-bar .filter label {
+    .search-bar .filter label {
       font-size: 16px;
       margin: 0px 15px;
       color: #43015E; }
-    .organizations .search-bar .filter input {
+    .search-bar .filter input {
       padding: 5px 12px;
       border: none;
       margin: 0px 15px;
@@ -37,16 +37,16 @@
       background: #F9F9F9;
       position: relative;
       top: 5px; }
-      .organizations .search-bar .filter input:focus {
+      .search-bar .filter input:focus {
         outline: none; }
-    .organizations .search-bar .filter input.tags-input {
+    .search-bar .filter input.tags-input {
       width: 100%;
       position: relative;
       top: 3px;
       margin-left: 0;
       border-bottom: none; }
-  .organizations .search-bar .filter-tags {
+  .search-bar .filter-tags {
     display: flex;
     padding-right: 10px; }
-    .organizations .search-bar .filter-tags a {
+    .search-bar .filter-tags a {
       margin-left: 5px; }

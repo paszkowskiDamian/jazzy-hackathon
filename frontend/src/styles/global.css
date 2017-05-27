@@ -170,38 +170,38 @@
   display: flex;
   justify-content: center; }
 
-.organizations .search-bar {
+.search-bar {
   margin-top: 20px;
   height: 60px;
   display: flex;
   align-items: center; }
-  .organizations .search-bar div:nth-child(1) {
+  .search-bar div:nth-child(1) {
     margin-left: 20px;
     flex: 1;
     border: 2px solid #43015E;
     border-radius: 15px 0px 0px 15px; }
-  .organizations .search-bar div:nth-of-type(2) {
+  .search-bar div:nth-of-type(2) {
     flex: 1;
     border: 2px solid #43015E;
     border-left: none;
     border-right: none; }
-  .organizations .search-bar div:nth-child(3) {
+  .search-bar div:nth-child(3) {
     margin-right: 20px;
     flex: 2;
     border: 2px solid #43015E;
     border-radius: 0px 15px 15px 0px; }
-    .organizations .search-bar div:nth-child(3) input {
+    .search-bar div:nth-child(3) input {
       margin-right: 5px; }
-  .organizations .search-bar .filter {
+  .search-bar .filter {
     height: 55px;
     text-align: left;
     display: flex;
     flex-direction: column; }
-    .organizations .search-bar .filter label {
+    .search-bar .filter label {
       font-size: 16px;
       margin: 0px 15px;
       color: #43015E; }
-    .organizations .search-bar .filter input {
+    .search-bar .filter input {
       padding: 5px 12px;
       border: none;
       margin: 0px 15px;
@@ -209,18 +209,18 @@
       background: #F9F9F9;
       position: relative;
       top: 5px; }
-      .organizations .search-bar .filter input:focus {
+      .search-bar .filter input:focus {
         outline: none; }
-    .organizations .search-bar .filter input.tags-input {
+    .search-bar .filter input.tags-input {
       width: 100%;
       position: relative;
       top: 3px;
       margin-left: 0;
       border-bottom: none; }
-  .organizations .search-bar .filter-tags {
+  .search-bar .filter-tags {
     display: flex;
     padding-right: 10px; }
-    .organizations .search-bar .filter-tags a {
+    .search-bar .filter-tags a {
       margin-left: 5px; }
 
 .login-page {
@@ -510,6 +510,36 @@
   height: 20px;
   fill: #43015E;
   padding-left: 5px; }
+
+.panel-wrapper .user-image-layout {
+  overflow: hidden;
+  height: 350px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  .panel-wrapper .user-image-layout .search-bar {
+    position: absolute;
+    width: 85%;
+    margin-top: 0px; }
+    .panel-wrapper .user-image-layout .search-bar .react-tagsinput {
+      background: none;
+      height: 29px; }
+      .panel-wrapper .user-image-layout .search-bar .react-tagsinput > span {
+        background: none; }
+    .panel-wrapper .user-image-layout .search-bar .react-tagsinput-tag {
+      height: 100%; }
+    .panel-wrapper .user-image-layout .search-bar input {
+      background: rgba(255, 255, 255, 0.5);
+      padding-left: 5px; }
+    .panel-wrapper .user-image-layout .search-bar input.tags-input {
+      top: 1px; }
+
+.map {
+  width: '100%';
+  height: '60vh';
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 * {
   margin: 0;

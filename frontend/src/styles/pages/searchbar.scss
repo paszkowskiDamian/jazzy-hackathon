@@ -1,75 +1,73 @@
 @import '../variables.scss';
-.organizations {
-    .search-bar {
-        margin-top: 20px;
-        height: $nav-height;
+.search-bar {
+    margin-top: 20px;
+    height: $nav-height;
+    display: flex;
+    align-items: center;
+
+    div:nth-child(1) {
+        margin-left: 20px;
+        flex: 1;
+        border: 2px solid $logo-violet;
+        border-radius: 15px 0px 0px 15px;
+    }
+
+    div:nth-of-type(2)  {
+        flex: 1;
+        border: 2px solid $logo-violet;
+        border-left: none;
+        border-right: none;
+    }
+
+    div:nth-child(3) {
+        margin-right: 20px;
+        flex: 2;
+        border: 2px solid $logo-violet;
+        border-radius: 0px 15px 15px 0px;
+
+        input {
+            margin-right: 5px;
+        }
+    }
+
+    .filter {
+        height: 55px;
+        text-align: left;
         display: flex;
-        align-items: center;
-
-        div:nth-child(1) {
-            margin-left: 20px;
-            flex: 1;
-            border: 2px solid $logo-violet;
-            border-radius: 15px 0px 0px 15px;
+        flex-direction: column;
+        label {
+            font-size: 16px;
+            margin: 0px 15px;
+            color: $logo-violet;
         }
+        input {
+            padding: 5px 12px;
+            border: none;
+            margin: 0px 15px;
+            padding-left: 0px;
+            background: $pageBackground;
+            position: relative;
+            top: 5px;
 
-        div:nth-of-type(2)  {
-            flex: 1;
-            border: 2px solid $logo-violet;
-            border-left: none;
-            border-right: none;
-        }
-
-        div:nth-child(3) {
-            margin-right: 20px;
-            flex: 2;
-            border: 2px solid $logo-violet;
-            border-radius: 0px 15px 15px 0px;
-
-            input {
-                margin-right: 5px;
+            &:focus {
+                outline: none;
             }
         }
-
-        .filter {
-            height: 55px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            label {
-                font-size: 16px;
-                margin: 0px 15px;
-                color: $logo-violet;
-            }
-            input {
-                padding: 5px 12px;
-                border: none;
-                margin: 0px 15px;
-                padding-left: 0px;
-                background: $pageBackground;
-                position: relative;
-                top: 5px;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-            input.tags-input {
-                width: 100%;
-                position: relative;
-                top: 3px;
-                margin-left: 0;
-                border-bottom: none;
-            }
+        input.tags-input {
+            width: 100%;
+            position: relative;
+            top: 3px;
+            margin-left: 0;
+            border-bottom: none;
         }
+    }
 
-        .filter-tags {
-            display: flex;
-            padding-right: 10px;
+    .filter-tags {
+        display: flex;
+        padding-right: 10px;
 
-            a {
-                margin-left: 5px;
-            }
+        a {
+            margin-left: 5px;
         }
     }
 }
