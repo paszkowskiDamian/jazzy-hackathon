@@ -26,5 +26,25 @@
         z-index: 100;
         right: 120px;
         visibility: hidden;
+
+        h3 {
+            padding: 20px 10px;
+        }
+
+        p {
+            padding: 0px 10px;
+        }
+
+        input {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: $primary-color-dark;
+            height: 25px;
+            border-radius: 12px;
+            padding: 3px;
+            border: none;
+        }
+
     }
 }
