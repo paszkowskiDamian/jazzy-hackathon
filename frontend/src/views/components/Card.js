@@ -23,7 +23,7 @@ export class Card extends Component {
                         <span>extra curricular opportunities to learn </span>
                     </div>
                     <div className="links">
-                        <strong>SHARE</strong> <strong>EXPLORE</strong>
+                        <strong>UDOSTĘPNIJ</strong> <strong>DOŁĄCZ</strong>
                     </div>
                 </div>
             </div>

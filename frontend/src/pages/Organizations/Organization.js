@@ -28,7 +28,6 @@ export class Organization extends Component {
 	}
 
 	componentWillMount() {
-		console.log('im in mount', _.get(this.props, 'match.params.id'));
 		httpService.GET(`/organizations/${_.get(this.props, 'match.params.id')}`).then(result => {
 			console.log('dupa ', result);
 
