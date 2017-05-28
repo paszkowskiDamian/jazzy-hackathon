@@ -18,7 +18,7 @@ export class Organizations extends Component {
         this.debounceSearchByName = debounce(this.searchByName, 500);
     }
     componentDidMount() {
-        httpService.GET('/organizations/search/all/all/50')
+        httpService.GET('/organizations/search/all/all/50/all')
             .then(res => this.setState(res))
     }
 
@@ -30,51 +30,53 @@ export class Organizations extends Component {
         tags: []
     }
 
-    filterByName = (res, name) => {
-        if (name) {
-            const organizations = res.organizations.filter(organization => (new RegExp(`^${name}.*`, "i").test(organization.location.suburb)));
-            this.setState({ organizations })
-        } else {
-            this.setState(res)
-        }
-    }
-
     searchByName = (name) => {
-        const { tags, location, locationFound } = this.state;
-        const tagSearchQuery = tags.length ? tags.join(',') : 'all';
+        const { location, locationFound, tags } = this.state;
+
+        const nameQuery = name ? name : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
 
         if (location) {
-            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagSearchQuery}/50`)
-                .then(res => this.filterByName(res, name));
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+                .then(res => this.setState(res));
         } else {
-            httpService.GET(`/organizations/search/all/${tagSearchQuery}/50`)
-                .then(res => this.filterByName(res, name))
+            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+                .then(res => this.setState(res));
         }
     }
 
-    searchByTag = (tags, location, locationFound) => {
-        const tagSearchQuery = tags.length ? tags.join(',') : 'all';
+    searchByTag = (tags) => {
+        const { name, location, locationFound } = this.state;
+
+        const nameQuery = name ? name : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
+
 
         if (location) {
-            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagSearchQuery}/50`)
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
                 .then(res => this.setState(res))
         } else {
-            httpService.GET(`/organizations/search/all/${tagSearchQuery}/50`)
+            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
                 .then(res => this.setState(res))
         }
     }
 
-    getGeoLocation = (value, name, tagsQuery) => {
+    getGeoLocation = (value) => {
+        const { name, location, tags, locationFound } = this.state;
+
+        const nameQuery = name ? name : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
+
         geocoder.geocode(value, (err, data) => {
             if (value) {
                 if (data.results.length === 1) {
                     const locationFound = data.results[0].geometry.location;
                     this.setState({ locationFound });
-                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50`)
+                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
                         .then(res => this.setState(res))
                 }
             } else {
-                httpService.GET(`/organizations/search/all/${tagsQuery}/50`)
+                httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
                     .then(res => this.setState(res))
             }
         });
@@ -86,21 +88,16 @@ export class Organizations extends Component {
             [e.target.name]: e.target.value
         });
 
-
-        const nameQuery = name ? name : 'all';
-        const tagsQuery = tags.length ? tags.join(',') : 'all';
-
         if (e.target.name === 'location') {
-            this.debounceGetGeoLocation(e.target.value, nameQuery, tagsQuery);
+            this.debounceGetGeoLocation(e.target.value);
         } else if (e.target.name === 'name') {
             this.debounceSearchByName(e.target.value);
         }
     }
 
     tagsChange = (tags) => {
-        const { location, locationFound } = this.state;
         this.setState({ tags });
-        this.debounceTagSearch(tags, location, locationFound)
+        this.debounceTagSearch(tags);
 
     }
 

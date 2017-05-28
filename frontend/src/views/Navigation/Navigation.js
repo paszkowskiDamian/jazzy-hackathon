@@ -17,35 +17,39 @@ export class Navigation extends Component {
 		};
 	}
 
-	componentWillMount() {
+	handleScroll = () => {
 		const mainContainer = document.querySelector('#root');
 		const viewContent = document.querySelector('#root');
-		let scrolling = false;
 
-		window.addEventListener('scroll', () => {
-				const oldScrollTopPosition = this.state.scrollTopPosition;
-				const currentScrollTopPosition = viewContent.getBoundingClientRect().top;
-				const scrollDirectionDown = currentScrollTopPosition - oldScrollTopPosition < 0;
+		const oldScrollTopPosition = this.state.scrollTopPosition;
+		const currentScrollTopPosition = viewContent.getBoundingClientRect().top;
+		const scrollDirectionDown = currentScrollTopPosition - oldScrollTopPosition < 0;
 
-				this.setState({
-					...this.state,
-					scrollDirectionDown,
-					scrollTopPosition: currentScrollTopPosition,
-				});
+		this.setState({
+			scrollDirectionDown,
+			scrollTopPosition: currentScrollTopPosition,
 		});
 	}
 
-    render() {
-        const { name, avatar } = this.props.loggedInUser;
-        const { logOut } = this.props;
+	componentWillMount() {
+		window.addEventListener('scroll', this.handleScroll, true);
+	}
 
-        return (
-            <div className={classnames('navigation', {'hide-nav': this.state.scrollDirectionDown})}>
-                <Logo />
-                <Tabs />
-                <SearchInput />
-                <UserTab logOut={logOut} name={name} avatar={avatar} />
-            </div>
-        );
-    }
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll, true);
+	}
+
+	render() {
+		const { name, avatar } = this.props.loggedInUser;
+		const { logOut } = this.props;
+
+		return (
+			<div className={classnames('navigation', { 'hide-nav': this.state.scrollDirectionDown })}>
+				<Logo />
+				<Tabs />
+				<SearchInput />
+				<UserTab logOut={logOut} name={name} avatar={avatar} />
+			</div>
+		);
+	}
 }
