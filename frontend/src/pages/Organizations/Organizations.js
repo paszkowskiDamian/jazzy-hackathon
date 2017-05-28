@@ -10,7 +10,7 @@ import * as geocoder from 'geocoder';
 
 
 export class Organizations extends Component {
-    componentWillMount() {
+    componentDidMount() {
         httpService.GET('/organizations/search/all/all/50').then(res => this.setState(res))
     }
 
@@ -19,11 +19,11 @@ export class Organizations extends Component {
     }
 
     render() {
-        const { loggedInUser } = this.props;
+        const { loggedInUser, logOut } = this.props;
         return (
             <div className="organizations">
-                <Navigation loggedInUser={loggedInUser} />
-                <Map />
+                <Navigation logOut={logOut} loggedInUser={loggedInUser} />
+                <Map places={this.state.organizations} />
                 <SearchBar />
                 <div className="organizations-wrapper">
                     <div className="organization-cards">
@@ -34,6 +34,7 @@ export class Organizations extends Component {
                             id={organization.id}
                             description={organization.description}
                             image={organization.logo}
+							link={`/organizations/${organization.id}`}
                             userCount={organization.users.length}
                             location={organization.location.geo} />)}
                     </div>

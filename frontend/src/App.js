@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
 } from 'react-router-dom';
 
 import { Home } from './Home'
@@ -12,23 +10,44 @@ import { RouteWithProps } from './RouteWithProps';
 
 class App extends Component {
   state = {
+    loggedInUser: {},
     isUserLoggedIn: false,
     userId: '',
   }
 
-  setUserAuthentication = (res) => {
-    this.setState({isUserLoggedIn: res.isUserLoggedIn, userId: res.id})
+  componentWillMount() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user !== null) {
+      this.setState({ isUserLoggedIn: true, loggedInUser: user });
+    } else {
+      this.setState({ isUserLoggedIn: false, loggedInUser: {} });
+    }
   }
-  
+
+  addUser = (isUserLoggedIn, user) => {
+    this.setState({ isUserLoggedIn, loggedInUser: user });
+    if (isUserLoggedIn) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+  }
+
+  logOut = () => {
+    this.setState({
+      loggedInUser: {},
+      isUserLoggedIn: false,
+    });
+    localStorage.clear();
+  }
+
   render() {
-    const { isUserLoggedIn, userId } = this.state;
+    const { isUserLoggedIn, userId, loggedInUser } = this.state;
     return (
       <Router>
         <div className="App">
-          <RouteWithProps exact path="/" component={Login} props={{ ...this.state, setUserAuthentication: this.setUserAuthentication }} />
+          <RouteWithProps path="/" component={Login} props={{ ...this.state, addUser: this.addUser }} />
           {
             isUserLoggedIn &&
-            <Home userId={userId} isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
+            <Home logOut={this.logOut} loggedInUser={loggedInUser} userId={userId} isUserLoggedIn={isUserLoggedIn} setUserAuthentication={this.setUserAuthentication} />
           }
         </div>
       </Router>

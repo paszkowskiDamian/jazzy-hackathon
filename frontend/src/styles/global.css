@@ -9,7 +9,10 @@
   height: 60px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   z-index: 5;
-  position: relative; }
+  position: fixed;
+  left: 0;
+  right: 0;
+  transition: all linear 0.3s; }
   .navigation a {
     color: #43015E; }
   .navigation .logo {
@@ -73,12 +76,12 @@
         .navigation .search-input .results-container .loader img {
           width: 100px;
           height: 100px; }
-      .navigation .search-input .results-container .results > div {
+      .navigation .search-input .results-container .results a > div {
         cursor: pointer;
         padding: 0.5em 0; }
-        .navigation .search-input .results-container .results > div span {
+        .navigation .search-input .results-container .results a > div span {
           margin-left: 0.5em; }
-        .navigation .search-input .results-container .results > div:hover {
+        .navigation .search-input .results-container .results a > div:hover {
           background-color: #FFA000; }
   .navigation .user-tab {
     flex: 3;
@@ -104,6 +107,8 @@
       margin-left: 20px; }
       .navigation .user-tab .avatar img {
         height: 100%; }
+  .navigation.hide-nav {
+    transform: translateY(-100%); }
 
 .organization-cards {
   display: flex;
@@ -540,8 +545,23 @@
 
 .map {
   width: '100%';
-  height: '60vh';
+  height: '70vh';
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+.overlay-blocker-component {
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+.marker {
+  width: 50px;
+  height: 50px; }
+  .marker svg {
+    height: 100%;
+    fill: #43015E; }
 
 * {
   margin: 0;

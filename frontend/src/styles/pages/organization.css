@@ -14,18 +14,16 @@
     flex-direction: column;
     justify-content: space-between; }
     .organization-container .organization-about .about-container .title-wrapper {
-      border: 1px solid black;
       padding: 0.5em 1em; }
     .organization-container .organization-about .about-container .description-container {
-      border: 1px solid black;
       padding: 0.5em 1em; }
       .organization-container .organization-about .about-container .description-container .social-icons {
         display: flex;
+        justify-content: center;
         font-size: 125%;
         margin-top: 2em; }
         .organization-container .organization-about .about-container .description-container .social-icons > div {
           margin-right: 1em;
-          border: 1px solid black;
           height: 2em;
           width: 2em;
           text-align: center;
@@ -42,16 +40,20 @@
     border: 1px solid black; }
 
 .organization-container .projects-container {
-  display: flex; }
+  display: flex;
+  margin-top: 2em; }
   .organization-container .projects-container .project {
     width: 33.33%;
-    margin: 1em; }
+    margin: 1em;
+    background-color: #FFA000; }
     .organization-container .projects-container .project .image {
       height: 10em;
       background-size: cover;
       background-position: 50%; }
     .organization-container .projects-container .project .description {
-      background-color: red; }
+      color: white;
+      text-align: initial;
+      padding: 0.5em; }
 
 .organization-container .members-container {
   margin-top: 2em;

@@ -14,25 +14,17 @@ import { Events } from './pages/Events/Events';
 
 
 export class Home extends Component {
-  state = {
-    loggedInUser: {},
-  }
-
-  componentDidMount() {
-    httpService.GET('/users/5929385ba77b9a1d5e3a2693')
-      .then(loggedInUser => this.setState({ loggedInUser }));
-  }
-
   render() {
-    const { isUserLoggedIn } = this.props;
+    const { isUserLoggedIn, loggedInUser, logOut } = this.props;
+    const propsToPass = {loggedInUser, logOut}
     return (
       isUserLoggedIn ?
       <Switch>
-        <RouteWithProps exact path="/panel" component={Panel} props={{ ...this.state }} />
-        <RouteWithProps exact path="/organizations" component={Organizations} props={{ ...this.state }} />
-        <RouteWithProps exact path="/organizations/:id" component={Organization} props={{ ...this.state }} />
-        <RouteWithProps path="/events" component={Events} props={{ ...this.state }} />
-        <RouteWithProps path="/projects" component={Projects} props={{ ...this.state }} />
+        <RouteWithProps path="/panel" component={Panel} props={{...propsToPass}} />
+        <RouteWithProps path="/organizations" component={Organizations} props={{...propsToPass}} />
+        <RouteWithProps path="/organizations/:id" component={Organization} props={{...propsToPass}} />
+        <RouteWithProps path="/events" component={Events} props={{...propsToPass}} />
+        <RouteWithProps path="/projects" component={Projects} props={{...propsToPass}} />
       </Switch> :
       <Redirect to="/"/>
     );

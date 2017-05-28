@@ -4,10 +4,10 @@ import { Navigation } from '../../views/Navigation/Navigation';
 
 export class Events extends Component {
     render() {
-        const { loggedInUser } = this.props;
+        const { loggedInUser, logOut } = this.props;
         return (
         	<div>
-                <Navigation loggedInUser={loggedInUser} />
+                <Navigation logOut={logOut} loggedInUser={loggedInUser} />
                 <p>Events</p>
             </div>
         );

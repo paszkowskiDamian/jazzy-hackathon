@@ -1,0 +1,6 @@
+.marker {
+  width: 50px;
+  height: 50px; }
+  .marker svg {
+    height: 100%;
+    fill: #43015E; }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { httpService } from '../../services/Http';
+import OverlayBlocker from './OverlayBlocker';
 
 export class SearchInput extends Component {
 	constructor(props) {
@@ -11,9 +12,11 @@ export class SearchInput extends Component {
 			organizations: [],
 			projects: [],
 			loading: false,
+			active: false,
 		};
 
 		this.inputChange = this.inputChange.bind(this);
+		this.changeSearch = this.changeSearch.bind(this);
 	}
 
 	componentWillMount() {
@@ -36,6 +39,10 @@ export class SearchInput extends Component {
 		}, this.props.delay || 500);
 	}
 
+	checkIfResults() {
+		return (this.state.projects.length || this.state.organizations.length || this.state.events.length);
+	}
+
 	inputChange(e) {
 		e.persist();
 		if(e.target.value.length >= 2) {
@@ -47,12 +54,22 @@ export class SearchInput extends Component {
 		});
 	}
 
+	changeSearch(val) {
+		this.setState({
+			...this.state,
+			active: val,
+		})
+	}
+
     render() {
         return (
             <div className="search-input">
-                <input onChange={this.inputChange} value={this.state.inputVal} />
+							<div style={{display: this.state.active ? 'block' : 'none'}}>
+								<OverlayBlocker zIndex={1} onClick={()=>this.changeSearch(false)} />
+							</div>
+                <input onFocus={() => this.changeSearch(true)} onChange={this.inputChange} value={this.state.inputVal} />
                 <i className="fa fa-search" />
-							<div className='results-container'>
+							<div style={{display: (this.state.active && this.checkIfResults() ) ? 'block' : 'none', zIndex: 4}} className='results-container'>
 								<div style={{display: this.state.loading ? 'none' : 'initial'}} className='results'>
 									{this.state.events.map((event, id) => (<a key={id} href={`/events/${event.id}`}>
 										<div>

@@ -10,7 +10,10 @@
     height: $nav-height;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     z-index: 5;
-    position: relative;
+    position: fixed;
+  left: 0;
+  right: 0;
+  transition: all linear 0.3s;
 
     a {
         color: $logo-violet;
@@ -102,16 +105,18 @@
 		}
 
 		.results {
-		  > div {
-			cursor: pointer;
-			padding: 0.5em 0;
+		  a {
+			> div {
+			  cursor: pointer;
+			  padding: 0.5em 0;
 
-			span {
-			  margin-left: 0.5em;
-			}
+			  span {
+				margin-left: 0.5em;
+			  }
 
-			&:hover {
-			  background-color: $primary-color-dark;
+			  &:hover {
+				background-color: $primary-color-dark;
+			  }
 			}
 		  }
 		}
@@ -151,4 +156,8 @@
             }
         }
     }
+
+  &.hide-nav {
+	transform: translateY(-100%);
+  }
 }
