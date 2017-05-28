@@ -89,7 +89,7 @@ export class Organization extends Component {
 								</div>
 							</div>
 							<div className="map-container">
-								<Map/>
+								<Map places={[{location: {geo: [this.state.location.long, this.state.location.lat]}}]} />
 							</div>
 						</div>
 						<div className="projects-container">

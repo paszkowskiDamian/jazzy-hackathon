@@ -6,13 +6,13 @@ import sweetalert from 'sweetalert';
 
 export class RegistrationModal extends Component {
 	state = {
-		name: 'haaa',
-		email: 'a',
-		password: 'b',
-		repeatPassword: 'c',
-		awatar: 'd',
-		skill: 'e',
-		about: 'f',
+		name: '',
+		email: '',
+		password: '',
+		repeatPassword: '',
+		awatar: '',
+		skill: '',
+		about: '',
 	};
 
 	handleChange = (e) => {
@@ -24,15 +24,29 @@ export class RegistrationModal extends Component {
 	};
 
 	handleClick = () => {
-		httpService.POST('/register', JSON.stringify({
-			email: this.state.email,
-			password: this.state.password,
-			name: this.state.name,
-			about: this.state.about,
-			skills: this.state.skill,
-			avatar: this.state.awatar
-		})).then(result => {
-			sweetalert("Użytkownik pomyślnie utworzony !");
+		fetch(`http://localhost:3005/register`, {
+			method: 'POST',
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password,
+				name: this.state.name,
+				about: this.state.about,
+				skills: this.state.skill,
+				avatar: this.state.awatar
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}).then((res) => {
+			if(!res.ok) {
+				throw new Error(res.statusText);
+			}
+
+			return res.json();
+		}).then(response => {
+			sweetalert('Konto stworzone!');
+		}).catch(err=> {
+			sweetalert('Oops...', 'Email jest już zajęty');
 		});
 	};
 
@@ -58,11 +72,11 @@ export class RegistrationModal extends Component {
                                 </div>
                                 <div className="form-gruop">
                                     <label>Hasło</label>
-                                    <input value={this.state.password} onChange={this.handleChange} name="password" type="text" />
+                                    <input value={this.state.password} onChange={this.handleChange} name="password" type="password" />
                                 </div>
                                 <div className="form-gruop">
                                     <label>Powtórz hasło</label>
-                                    <input value={this.state.repeatPassword} onChange={this.handleChange} name="repeatPassword" type="text" />
+                                    <input value={this.state.repeatPassword} onChange={this.handleChange} name="repeatPassword" type="password" />
                                 </div>
                             </div>
                             <div className="form-col mobile-off">

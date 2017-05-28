@@ -13,7 +13,6 @@ export class Http {
                 'Content-Type': 'application/json',
             },
         }
-			console.log('hha ', config);
 
         return fetch(this.address + path, config)
             .then(res => {
@@ -21,7 +20,7 @@ export class Http {
                     return {
                         isUserLoggedIn: false
                     }
-                } else return res.json();      
+                } else return res.json();
             })
             .then(res => ({
                 isUserLoggedIn,
