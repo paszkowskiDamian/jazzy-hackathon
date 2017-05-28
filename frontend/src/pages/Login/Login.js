@@ -11,6 +11,7 @@ export class Login extends Component {
         isHidden: true,
         email: '',
         password: '',
+        errors: {}
     }
 
     toggleModal = () => {
@@ -18,29 +19,35 @@ export class Login extends Component {
     }
 
     handleChange = (e) => {
+        this.setState({ errors: {} });
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
     logIn = (e) => {
-        const { email, password } = this.state;
+        const { email, password, errors } = this.state;
         const { addUser } = this.props;
         httpService.POST('/login', JSON.stringify({ email, password }))
             .then((res) => {
                 const { isUserLoggedIn, ...rest } = res;
-                addUser(isUserLoggedIn, rest);
+                if (!isUserLoggedIn) {
+                    errors.login = 'Nieprawidłowe dane'
+                    this.setState({ errors });
+                } else {
+                    addUser(isUserLoggedIn, rest);
+                }
             });
     }
 
     render() {
-        const { email, password } = this.state;
+        const { email, password, errors } = this.state;
         const { isUserLoggedIn } = this.props;
         const path = location.pathname;
 
         return (
             isUserLoggedIn ?
-                <Redirect to={`${path === '/' ? '/panel' : path }`} /> : (
+                <Redirect to={`${path === '/' ? '/panel' : path}`} /> : (
                     <div className="login-page">
                         <RegistrationModal toggleModal={this.toggleModal} isHidden={this.state.isHidden} />
                         <div className="logo-card"><Logo /></div>
@@ -55,7 +62,7 @@ export class Login extends Component {
                                 <div className="logo-card logo-purple"><Logo /></div>
                                 <div className="form-group">
                                     <div className="input-group">
-                                        <label>Login:</label>
+                                            <label>Login: {errors.login && <small className="error-login">{errors.login}</small> }</label>
                                         <input name="email" value={email} type="text" placeholder="Podaj swój login" onChange={this.handleChange} />
                                     </div>
                                     <div className="input-group">

@@ -90,4 +90,8 @@
               outline: none; }
           .login-page .card-container .login-card .form-group .input-group label {
             width: 70%;
-            padding: 5px; }
+            padding: 5px;
+            display: flex;
+            justify-content: space-between; }
+            .login-page .card-container .login-card .form-group .input-group label small {
+              color: #43015E; }
