@@ -37,6 +37,7 @@ class App extends Component {
       isUserLoggedIn: false,
     });
     localStorage.clear();
+    
   }
 
   render() {

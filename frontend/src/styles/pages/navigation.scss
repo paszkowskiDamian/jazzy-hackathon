@@ -60,6 +60,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+            height: 100%;
 
         input {
             font-size: 16px;
@@ -93,6 +94,7 @@
 		text-align: initial;
 		background-color: white;
 		border: 1px solid black;
+        
 
 		.loader {
 		  display: flex;
@@ -126,17 +128,19 @@
     .user-tab {
         flex: 3;
         display: flex;
-        justify-content: space-around;
 
         .user-details {
             display: flex;
             flex-direction: column;
             text-align: right;
+                    height: 100%;
+        align-content: center;
 
             span {
                 color: $logo-violet;
                 margin-left: 80px;
                 cursor: pointer;
+                white-space: nowrap
             }
         }
 

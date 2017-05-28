@@ -3,7 +3,7 @@ import React from 'react';
 export function Avatar({ avatar }) {
     return (
         <div className="avatar">
-            <img src={`${avatar ? avatar : 'https://cdn.dribbble.com/users/291/screenshots/290124/defaultuser.png'}`} alt="Someone"/>
+            <img src={`${avatar ? avatar : 'http://www.cctw.gig.eu/cscore/images/Osoby-kontaktowe/profile-default-male.png'}`} alt="Someone"/>
         </div>
     );
 }

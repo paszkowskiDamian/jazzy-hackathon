@@ -42,7 +42,8 @@
     color: #212121;
     display: flex;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    height: 100%; }
     .navigation .search-input input {
       font-size: 16px;
       flex: 7;
@@ -84,16 +85,18 @@
           background-color: #FFA000; }
   .navigation .user-tab {
     flex: 3;
-    display: flex;
-    justify-content: space-around; }
+    display: flex; }
     .navigation .user-tab .user-details {
       display: flex;
       flex-direction: column;
-      text-align: right; }
+      text-align: right;
+      height: 100%;
+      align-content: center; }
       .navigation .user-tab .user-details span {
         color: #43015E;
         margin-left: 80px;
-        cursor: pointer; }
+        cursor: pointer;
+        white-space: nowrap; }
     .navigation .user-tab .avatar {
       width: 40px;
       border-radius: 50%;
