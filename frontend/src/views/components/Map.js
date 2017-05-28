@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GoogleMap from 'google-map-react';
+import geolib  from 'geolib';
 
 import { mapStyle } from './../helpers/mapStyle'
 import { Marker } from './Marker';
@@ -30,13 +31,24 @@ export class Map extends Component {
         }
     }
 
+
     render() {
         const { places } = this.props;
+        const locations = places.filter(place => place.location.geo).map(place => {
+        	return {
+						latitude: place.location.geo[0],
+						longitude: place.location.geo[1],
+					}
+				}) || [];
+
+        const {latitude, longitude} =geolib.getCenter(locations);
+        const centerPoint = [parseFloat(longitude), parseFloat(latitude)].filter(e => e);
+
         return (
             <div style={{ width: '100%', height: '60vh', boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}>
                 <GoogleMap
                     apiKey="AIzaSyBLS_NpKl0zF9eUlWwPxsGEb6hReanSNLo" // set if you need stats etc ...
-                    center={this.state.center}
+                    center={centerPoint}
                     zoom={this.props.zoom}
                     options={this.createMapOptions}>
                     {places.map(place =>place.location && place.location.geo && <Marker key={place.id} lat={place.location.geo[1]} lng={place.location.geo[0]} />)}

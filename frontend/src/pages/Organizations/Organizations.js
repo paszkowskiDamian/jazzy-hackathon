@@ -16,7 +16,7 @@ export class Organizations extends Component {
         this.debounceGetGeoLocation = debounce(this.getGeoLocation, 1000);
     }
     componentWillMount() {
-        httpService.GET('/organizations/search/all/all/50').then(res => this.setState(res))
+        httpService.GET('/organizations/search/all/all/50/all').then(res => this.setState(res))
     }
 
     state = {
@@ -31,7 +31,7 @@ export class Organizations extends Component {
         geocoder.geocode(e.target.value, (err, data) => {
             if (data.results.length === 1) {
                 const locationFound = data.results[0].geometry.location;
-                httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/all/50`)
+                httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/all/50/all`)
                     .then(res => this.setState(res))
             }
         });
