@@ -1,0 +1,30 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+
+.marker {
+
+    svg {
+        fill: $logo-violet;
+        height: 55px;
+
+        &:hover + div {
+            visibility: visible;
+            opacity: 1;
+            transition: all .2s ease-in-out;
+        }
+    }
+
+    .popup {
+        height: 130px;
+        width: 260px;
+        background: white;
+        @include card-shadow();
+        position: relative;
+        bottom: 200px;
+        opacity: 0;
+        z-index: 100;
+        right: 120px;
+        visibility: hidden;
+    }
+}

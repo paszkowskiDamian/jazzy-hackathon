@@ -1,0 +1,19 @@
+.marker svg {
+  fill: #43015E;
+  height: 55px; }
+  .marker svg:hover + div {
+    visibility: visible;
+    opacity: 1;
+    transition: all .2s ease-in-out; }
+
+.marker .popup {
+  height: 130px;
+  width: 260px;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: relative;
+  bottom: 200px;
+  opacity: 0;
+  z-index: 100;
+  right: 120px;
+  visibility: hidden; }

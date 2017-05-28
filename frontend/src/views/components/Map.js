@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleMap from 'google-map-react';
 
 import { mapStyle } from './../helpers/mapStyle'
+import { Marker } from './Marker';
 
 
 export class Map extends Component {
@@ -30,6 +31,7 @@ export class Map extends Component {
     }
 
     render() {
+        const { places } = this.props;
         return (
             <div style={{ width: '100%', height: '60vh', boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}>
                 <GoogleMap
@@ -37,6 +39,7 @@ export class Map extends Component {
                     center={this.state.center}
                     zoom={this.props.zoom}
                     options={this.createMapOptions}>
+                    {places.map(place =>place.location && place.location.geo && <Marker key={place.id} lat={place.location.geo[1]} lng={place.location.geo[0]} />)}
                     {/*<MyGreatPlace lat={59.955413} lng={30.337844} text={'A'}  />
         <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} />*/}
                 </GoogleMap>
