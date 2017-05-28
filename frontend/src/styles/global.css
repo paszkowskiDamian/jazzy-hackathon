@@ -328,9 +328,17 @@
             width: 70%;
             padding: 5px;
             display: flex;
-            justify-content: space-between; }
+            justify-content: space-between;
+            overflow: hidden; }
             .login-page .card-container .login-card .form-group .input-group label small {
-              color: #43015E; }
+              color: #43015E;
+              opacity: 0;
+              transition: all .1s ease-in-out;
+              position: relative;
+              left: 100%; }
+            .login-page .card-container .login-card .form-group .input-group label .visible {
+              opacity: 1;
+              left: 0; }
 
 .visible {
   z-index: 100; }

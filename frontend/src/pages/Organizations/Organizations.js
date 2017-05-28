@@ -6,7 +6,6 @@ import { Navigation } from '../../views/Navigation/Navigation';
 import { Map } from './../../views/components/Map'
 import { Card } from '../../views/components/Card';
 import { SearchBar } from '../../views/components/SearchBar';
-import { organizations } from '../../data/organizations';
 import { httpService } from '../../services/Http';
 
 
@@ -62,7 +61,7 @@ export class Organizations extends Component {
     }
 
     getGeoLocation = (value) => {
-        const { name, location, tags, locationFound } = this.state;
+        const { name, tags } = this.state;
 
         const nameQuery = name ? name : 'all';
         const tagsQuery = tags.length ? tags.join(',') : 'all';
@@ -83,7 +82,6 @@ export class Organizations extends Component {
     }
 
     handleChange = (e) => {
-        const { name, location, tags, locationFound } = this.state;
         this.setState({
             [e.target.name]: e.target.value
         });

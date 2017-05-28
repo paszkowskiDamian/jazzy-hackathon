@@ -91,7 +91,7 @@ export class SearchInput extends Component {
 									</a>))}
 								</div>
 								<div style={{display: this.state.loading ? 'flex' : 'none'}} className='loader'>
-									<img src='http://apdw.com/images/balls_loading.gif?x13037' />
+									<img src='http://apdw.com/images/balls_loading.gif?x13037' alt="search" />
 								</div>
 							</div>
             </div>

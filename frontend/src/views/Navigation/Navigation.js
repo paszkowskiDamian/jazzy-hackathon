@@ -18,7 +18,6 @@ export class Navigation extends Component {
 	}
 
 	handleScroll = () => {
-		const mainContainer = document.querySelector('#root');
 		const viewContent = document.querySelector('#root');
 
 		const oldScrollTopPosition = this.state.scrollTopPosition;

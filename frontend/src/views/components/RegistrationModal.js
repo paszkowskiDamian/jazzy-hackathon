@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import { httpService } from '../../services/Http';
 import sweetalert from 'sweetalert';
 
 
