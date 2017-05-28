@@ -36,10 +36,10 @@ export class Organizations extends Component {
         const tagsQuery = tags.length ? tags.join(',') : 'all';
 
         if (location) {
-            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
                 .then(res => this.setState(res));
         } else {
-            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+            httpService.GET(`/organizations/search/all/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
                 .then(res => this.setState(res));
         }
     }
@@ -52,10 +52,10 @@ export class Organizations extends Component {
 
 
         if (location) {
-            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
                 .then(res => this.setState(res))
         } else {
-            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+            httpService.GET(`/organizations/search/all/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
                 .then(res => this.setState(res))
         }
     }
@@ -71,11 +71,11 @@ export class Organizations extends Component {
                 if (data.results.length === 1) {
                     const locationFound = data.results[0].geometry.location;
                     this.setState({ locationFound });
-                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
                         .then(res => this.setState(res))
                 }
             } else {
-                httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+                httpService.GET(`/organizations/search/all/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
                     .then(res => this.setState(res))
             }
         });
