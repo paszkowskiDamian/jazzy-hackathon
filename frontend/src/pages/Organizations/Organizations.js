@@ -13,10 +13,13 @@ import { httpService } from '../../services/Http';
 export class Organizations extends Component {
     constructor(props) {
         super(props);
-        this.debounceGetGeoLocation = debounce(this.getGeoLocation, 1000);
+        this.debounceGetGeoLocation = debounce(this.getGeoLocation, 500);
+        this.debounceTagSearch = debounce(this.searchByTag, 500);
+        this.debounceSearchByName = debounce(this.searchByName, 500);
     }
-    componentWillMount() {
-        httpService.GET('/organizations/search/all/all/50').then(res => this.setState(res))
+    componentDidMount() {
+        httpService.GET('/organizations/search/all/all/50')
+            .then(res => this.setState(res))
     }
 
     state = {
@@ -27,11 +30,51 @@ export class Organizations extends Component {
         tags: []
     }
 
-    getGeoLocation = (e) => {
-        geocoder.geocode(e.target.value, (err, data) => {
-            if (data.results.length === 1) {
-                const locationFound = data.results[0].geometry.location;
-                httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/all/50`)
+    filterByName = (res, name) => {
+        if (name) {
+            const organizations = res.organizations.filter(organization => (new RegExp(`^${name}.*`, "i").test(organization.location.suburb)));
+            this.setState({ organizations })
+        } else {
+            this.setState(res)
+        }
+    }
+
+    searchByName = (name) => {
+        const { tags, location, locationFound } = this.state;
+        const tagSearchQuery = tags.length ? tags.join(',') : 'all';
+
+        if (location) {
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagSearchQuery}/50`)
+                .then(res => this.filterByName(res, name));
+        } else {
+            httpService.GET(`/organizations/search/all/${tagSearchQuery}/50`)
+                .then(res => this.filterByName(res, name))
+        }
+    }
+
+    searchByTag = (tags, location, locationFound) => {
+        const tagSearchQuery = tags.length ? tags.join(',') : 'all';
+
+        if (location) {
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagSearchQuery}/50`)
+                .then(res => this.setState(res))
+        } else {
+            httpService.GET(`/organizations/search/all/${tagSearchQuery}/50`)
+                .then(res => this.setState(res))
+        }
+    }
+
+    getGeoLocation = (value, name, tagsQuery) => {
+        geocoder.geocode(value, (err, data) => {
+            if (value) {
+                if (data.results.length === 1) {
+                    const locationFound = data.results[0].geometry.location;
+                    this.setState({ locationFound });
+                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50`)
+                        .then(res => this.setState(res))
+                }
+            } else {
+                httpService.GET(`/organizations/search/all/${tagsQuery}/50`)
                     .then(res => this.setState(res))
             }
         });
@@ -43,21 +86,22 @@ export class Organizations extends Component {
             [e.target.name]: e.target.value
         });
 
-        if (e.target.name === 'location') {
-            e.persist();
-            this.debounceGetGeoLocation(e);
-        }
-
 
         const nameQuery = name ? name : 'all';
-        const locationQuery = location ? location : 'all';
-        const tagsQuery = tags.length ? tags.join('') : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
 
-
+        if (e.target.name === 'location') {
+            this.debounceGetGeoLocation(e.target.value, nameQuery, tagsQuery);
+        } else if (e.target.name === 'name') {
+            this.debounceSearchByName(e.target.value);
+        }
     }
 
     tagsChange = (tags) => {
+        const { location, locationFound } = this.state;
         this.setState({ tags });
+        this.debounceTagSearch(tags, location, locationFound)
+
     }
 
     render() {
@@ -77,7 +121,8 @@ export class Organizations extends Component {
                             description={organization.description}
                             image={organization.logo}
                             link={`/organizations/${organization.id}`}
-                            userCount={organization.users.length} />)}
+                            userCount={organization.users.length}
+                            suburb={organization.location.suburb} />)}
                     </div>
                 </div>
             </div>

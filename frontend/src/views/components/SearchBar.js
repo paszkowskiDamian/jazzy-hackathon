@@ -12,7 +12,7 @@ export class SearchBar extends Component {
         return (
             <div className="search-bar">
                 <div className="filter">
-                    <label>Nazwa </label>
+                    <label>Organizacja </label>
                     <input name="name" value={name} onChange={handleChange} />
                 </div>
                 <div className="filter">
