@@ -136,9 +136,19 @@
                         padding: 5px;
                         display: flex;
                         justify-content: space-between;
+                        overflow: hidden;
 
                         small {
                             color: $logo-violet;
+                            opacity: 0;
+                            transition: all .1s ease-in-out;
+                            position: relative;
+                            left: 100%;
+                        }
+
+                        .visible {
+                            opacity: 1;
+                            left: 0;
                         }
                     }
                 }

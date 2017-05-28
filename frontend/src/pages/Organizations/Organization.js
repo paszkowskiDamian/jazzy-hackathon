@@ -53,10 +53,10 @@ export class Organization extends Component {
 	}
 	
 	render() {
-		const { loggedInUser } = this.props;
+		const { loggedInUser, logOut } = this.props;
 		return (
 			<div className="organization-container">
-				<Navigation loggedInUser={loggedInUser} />
+				<Navigation loggedInUser={loggedInUser} logOut={logOut} />
 				<div className="row center-xs">
 					<div className="col-xs-10">
 						<div className="organization-about">
@@ -89,7 +89,7 @@ export class Organization extends Component {
 								</div>
 							</div>
 							<div className="map-container">
-								<Map/>
+								<Map places={[{location: {geo: [this.state.location.long, this.state.location.lat]}}]} />
 							</div>
 						</div>
 						<div className="projects-container">

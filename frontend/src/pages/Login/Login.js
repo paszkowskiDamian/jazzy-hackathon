@@ -1,5 +1,7 @@
 /* eslint no-restricted-globals: 0 */
 import React, { Component } from 'react';
+import cn from 'classnames';
+
 import { RegistrationModal } from './../../views/components/RegistrationModal'
 import { Logo } from './../../views/components/Logo'
 import { Redirect } from 'react-router-dom';
@@ -63,7 +65,7 @@ export class Login extends Component {
                                 <div className="logo-card logo-purple"><Logo /></div>
                                 <div className="form-group">
                                     <div className="input-group">
-                                            <label>Login: {errors.login && <small className="error-login">{errors.login}</small> }</label>
+                                            <label>Login: <small className={cn("error-login", {visible: errors.login})}>{errors.login}</small></label>
                                         <input name="email" value={email} type="text" placeholder="Podaj swój login" onChange={this.handleChange} />
                                     </div>
                                     <div className="input-group">

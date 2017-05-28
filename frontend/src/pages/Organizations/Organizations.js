@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import geocoder from 'geocoder';
 import { debounce } from 'lodash';
+import geolib  from 'geolib';
 
 import { Navigation } from '../../views/Navigation/Navigation';
 import { Map } from './../../views/components/Map'
 import { Card } from '../../views/components/Card';
 import { SearchBar } from '../../views/components/SearchBar';
-import { organizations } from '../../data/organizations';
 import { httpService } from '../../services/Http';
 
 
 export class Organizations extends Component {
     constructor(props) {
         super(props);
-        this.debounceGetGeoLocation = debounce(this.getGeoLocation, 1000);
+        this.debounceGetGeoLocation = debounce(this.getGeoLocation, 500);
+        this.debounceTagSearch = debounce(this.searchByTag, 500);
+        this.debounceSearchByName = debounce(this.searchByName, 500);
     }
-    componentWillMount() {
-        httpService.GET('/organizations/search/all/all/50').then(res => this.setState(res))
+    componentDidMount() {
+        httpService.GET('/organizations/search/all/all/50/all')
+            .then(res => this.setState(res))
     }
 
     state = {
@@ -24,48 +27,101 @@ export class Organizations extends Component {
         name: '',
         location: '',
         locationFound: {},
-        tags: []
+        tags: [],
+        centerPoint: [50.292693, 18.666345]
     }
 
-    getGeoLocation = (e) => {
-        geocoder.geocode(e.target.value, (err, data) => {
-            if (data.results.length === 1) {
-                const locationFound = data.results[0].geometry.location;
-                httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/all/50`)
-                    .then(res => this.setState(res))
+    setCenter = () => {
+        const { organizations } = this.state;
+        const locations = organizations.filter(place => place.location.geo).map(place => {
+            return {
+                latitude: place.location.geo[0],
+                longitude: place.location.geo[1],
+            }
+        }) || [50.292693, 18.666345];
+
+        const { latitude, longitude } = geolib.getCenter(locations);
+        const centerPoint = [parseFloat(longitude), parseFloat(latitude)].filter(e => e);
+        this.setState({ centerPoint });
+    }
+
+    searchByName = (name) => {
+        const { location, locationFound, tags } = this.state;
+
+        const nameQuery = name ? name : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
+
+        if (location) {
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+                .then(res => this.setState(res, () => this.setCenter()));
+        } else {
+            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+                .then(res => this.setState(res, () => this.setCenter()));
+        }
+    }
+
+    searchByTag = (tags) => {
+        const { name, location, locationFound } = this.state;
+
+        const nameQuery = name ? name : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
+
+
+        if (location) {
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+                .then(res => this.setState(res, () => this.setCenter()))
+        } else {
+            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+                .then(res => this.setState(res, () => this.setCenter()))
+        }
+    }
+
+    getGeoLocation = (value) => {
+        const { name, tags } = this.state;
+
+        const nameQuery = name ? name : 'all';
+        const tagsQuery = tags.length ? tags.join(',') : 'all';
+
+        geocoder.geocode(value, (err, data) => {
+            if (value) {
+                if (data.results.length === 1) {
+                    const locationFound = data.results[0].geometry.location;
+                    this.setState({ locationFound });
+                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${nameQuery}`)
+                        .then(res => this.setState(res, () => this.setCenter()))
+                }
+            } else {
+                httpService.GET(`/organizations/search/all/${tagsQuery}/50/${nameQuery}`)
+                    .then(res => this.setState(res, () => this.setCenter()))
             }
         });
     }
 
     handleChange = (e) => {
-        const { name, location, tags, locationFound } = this.state;
         this.setState({
             [e.target.name]: e.target.value
         });
 
         if (e.target.name === 'location') {
-            e.persist();
-            this.debounceGetGeoLocation(e);
+            this.debounceGetGeoLocation(e.target.value);
+        } else if (e.target.name === 'name') {
+            this.debounceSearchByName(e.target.value);
         }
-
-
-        const nameQuery = name ? name : 'all';
-        const locationQuery = location ? location : 'all';
-        const tagsQuery = tags.length ? tags.join('') : 'all';
-
-
     }
 
     tagsChange = (tags) => {
         this.setState({ tags });
+        this.debounceTagSearch(tags);
+
     }
 
     render() {
         const { loggedInUser, logOut } = this.props;
+        const { centerPoint } = this.state;
         return (
             <div className="organizations">
                 <Navigation logOut={logOut} loggedInUser={loggedInUser} />
-                <Map places={this.state.organizations} />
+                <Map centerPoint={centerPoint} places={this.state.organizations} />
                 <SearchBar {...this.state} tagsChange={this.tagsChange} handleChange={this.handleChange} />
                 <div className="organizations-wrapper">
                     <div className="organization-cards">
@@ -77,7 +133,8 @@ export class Organizations extends Component {
                             description={organization.description}
                             image={organization.logo}
                             link={`/organizations/${organization.id}`}
-                            userCount={organization.users.length} />)}
+                            userCount={organization.users.length}
+                            suburb={organization.location.suburb} />)}
                     </div>
                 </div>
             </div>

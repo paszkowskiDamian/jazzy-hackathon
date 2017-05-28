@@ -143,8 +143,8 @@ exports = module.exports = function (app) {
 	// 	});
 	// });
 
-	app.get('/organizations/search/:location/:tags/:radius', ({params}, res, next) => {
-		const {location: location_, tags: tags_, radius} = params;
+	app.get('/organizations/search/:location/:tags/:radius/:name', ({params}, res, next) => {
+		const {location: location_, tags: tags_, radius, name} = params;
 		const location = decodeURI(location_).split(',');
 		const tags = decodeURI(tags_).split(',');
 		let queriesAnd = [];
@@ -155,6 +155,10 @@ exports = module.exports = function (app) {
 
 		if(tags_ != 'all') {
 			queriesAnd.push({ tags: { $in: tags } });
+		}
+
+		if(name != 'all') {
+			queriesAnd.push({ name: new RegExp(`^${name}`, 'i') });
 		}
 
 		function getQueryFunction() {

@@ -4,7 +4,6 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import { httpService } from './services/Http';
 import { RouteWithProps } from './RouteWithProps';
 import { Organizations } from './pages/Organizations/Organizations';
 import { Organization } from './pages/Organizations/Organization';
