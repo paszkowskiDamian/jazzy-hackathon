@@ -57,6 +57,7 @@ export class Login extends Component {
                             <div className="text-card">
                                 <h1>Cześć!</h1>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum nulla vitae mauris accumsan, et pretium ex sagittis. Donec tristique viverra enim.</p>
+                                {/*<p>Dołącz do społeczności, odkrywaj organizacje, wtdarzenia i projekty wokół Ciebie </p>*/}
                             </div>
                         </div>
                         <div className="card-container" >

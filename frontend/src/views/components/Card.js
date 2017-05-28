@@ -8,7 +8,7 @@ export class Card extends Component {
 								<div className="card-img">
 									{this.props.image ?
 										<img src={this.props.image} className="image" alt="some-organization" /> :
-										<img src={'https://source.unsplash.com/random'} alt="some-organization" />}
+										<img src={'https://bytesizemoments.com/wp-content/uploads/2014/04/placeholder.png'} alt="some-organization" />}
 									<h3>{this.props.title}</h3>
 								</div>
 							</a>

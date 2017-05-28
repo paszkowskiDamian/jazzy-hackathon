@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import geocoder from 'geocoder';
 import { debounce } from 'lodash';
+import geolib  from 'geolib';
 
 import { Navigation } from '../../views/Navigation/Navigation';
 import { Map } from './../../views/components/Map'
@@ -26,7 +27,22 @@ export class Organizations extends Component {
         name: '',
         location: '',
         locationFound: {},
-        tags: []
+        tags: [],
+        centerPoint: [50.292693, 18.666345]
+    }
+
+    setCenter = () => {
+        const { organizations } = this.state;
+        const locations = organizations.filter(place => place.location.geo).map(place => {
+            return {
+                latitude: place.location.geo[0],
+                longitude: place.location.geo[1],
+            }
+        }) || [50.292693, 18.666345];
+
+        const { latitude, longitude } = geolib.getCenter(locations);
+        const centerPoint = [parseFloat(longitude), parseFloat(latitude)].filter(e => e);
+        this.setState({ centerPoint });
     }
 
     searchByName = (name) => {
@@ -36,11 +52,11 @@ export class Organizations extends Component {
         const tagsQuery = tags.length ? tags.join(',') : 'all';
 
         if (location) {
-            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
-                .then(res => this.setState(res));
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${encodeURI(nameQuery)}`)
+                .then(res => this.setState(res, () => this.setCenter()));
         } else {
-            httpService.GET(`/organizations/search/all/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
-                .then(res => this.setState(res));
+            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${encodeURI(nameQuery)}`)
+                .then(res => this.setState(res, () => this.setCenter()));
         }
     }
 
@@ -52,11 +68,11 @@ export class Organizations extends Component {
 
 
         if (location) {
-            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
-                .then(res => this.setState(res))
+            httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${encodeURI(nameQuery)}`)
+                .then(res => this.setState(res, () => this.setCenter()))
         } else {
-            httpService.GET(`/organizations/search/all/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
-                .then(res => this.setState(res))
+            httpService.GET(`/organizations/search/all/${tagsQuery}/50/${encodeURI(nameQuery)}`)
+                .then(res => this.setState(res, () => this.setCenter()))
         }
     }
 
@@ -71,12 +87,12 @@ export class Organizations extends Component {
                 if (data.results.length === 1) {
                     const locationFound = data.results[0].geometry.location;
                     this.setState({ locationFound });
-                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
-                        .then(res => this.setState(res))
+                    httpService.GET(`/organizations/search/${locationFound.lng},${locationFound.lat}/${tagsQuery}/50/${encodeURI(nameQuery)}`)
+                        .then(res => this.setState(res, () => this.setCenter()))
                 }
             } else {
-                httpService.GET(`/organizations/search/all/${encodeURI(tagsQuery)}/50/${encodeURI(nameQuery)}`)
-                    .then(res => this.setState(res))
+                httpService.GET(`/organizations/search/all/${tagsQuery}/50/${encodeURI(nameQuery)}`)
+                    .then(res => this.setState(res, () => this.setCenter()))
             }
         });
     }
@@ -101,10 +117,11 @@ export class Organizations extends Component {
 
     render() {
         const { loggedInUser, logOut } = this.props;
+        const { centerPoint } = this.state;
         return (
             <div className="organizations">
                 <Navigation logOut={logOut} loggedInUser={loggedInUser} />
-                <Map places={this.state.organizations} />
+                <Map centerPoint={centerPoint} places={this.state.organizations} />
                 <SearchBar {...this.state} tagsChange={this.tagsChange} handleChange={this.handleChange} />
                 <div className="organizations-wrapper">
                     <div className="organization-cards">

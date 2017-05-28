@@ -534,9 +534,16 @@
   fill: #43015E;
   padding-left: 5px; }
 
+.panel-wrapper .header {
+  color: white;
+  z-index: 100;
+  position: absolute;
+  font-size: 3em;
+  text-shadow: 0px 0px 5px black; }
+
 .panel-wrapper .user-image-layout {
   overflow: hidden;
-  height: 350px;
+  height: 70vh;
   display: flex;
   margin: 0 auto;
   justify-content: center;
