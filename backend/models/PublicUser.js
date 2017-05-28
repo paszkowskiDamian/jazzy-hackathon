@@ -11,6 +11,8 @@ PublicUser.add({
 	email: {
 		type: String,
 		unique: true,
+		required: true,
+		default: '',
 	},
 	name: String,
 	avatar: String,
