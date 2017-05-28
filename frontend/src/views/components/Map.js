@@ -44,7 +44,7 @@ export class Map extends Component {
                     center={centerPoint}
                     zoom={this.props.zoom}
                     options={this.createMapOptions}>
-                    {places.map(place => place.location && place.location.geo && <Marker key={place.id} lat={place.location.geo[1]} lng={place.location.geo[0]} />)}
+                    {places.map(place => place.location && place.location.geo && <Marker key={place.id} header={place.name} description={place.description} lat={place.location.geo[1]} lng={place.location.geo[0]} />)}
                 </GoogleMap>
             </div>
         );
